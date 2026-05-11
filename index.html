@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zahra Hijab – Anggun Setiap Hari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf6f0;
+      --blush: #e8d5c4;
+      --rose: #c4826a;
+      --deep: #3b2a24;
+      --gold: #c9a96e;
+      --soft: #f3ece5;
+      --text: #4a3228;
+      --muted: #9c7c70;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--soft); }
+    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 6%;
+      background: rgba(250,246,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196,130,106,0.15);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(59,42,36,0.08); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600;
+      color: var(--deep); letter-spacing: .04em;
+    }
+    .nav-logo span { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: #fff;
+      padding: .55rem 1.4rem; border-radius: 50px;
+      font-size: .85rem; font-weight: 500; letter-spacing: .06em;
+      text-decoration: none; text-transform: uppercase;
+      transition: background .25s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--deep); transform: scale(1.04); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 6% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-shape {
+      position: absolute; right: -10%; top: -5%;
+      width: 60vw; height: 110vh;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--soft) 100%);
+      border-radius: 60% 0 0 60%;
+      z-index: 0;
+    }
+    .hero-left { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold); color: #fff;
+      font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: .35rem 1rem;
+      border-radius: 50px; margin-bottom: 1.5rem;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600; line-height: 1.15;
+      color: var(--deep);
+      animation: fadeUp .7s .1s ease both;
+    }
+    .hero-headline em { font-style: italic; color: var(--rose); }
+    .hero-sub {
+      margin-top: 1.2rem; font-size: 1.05rem; line-height: 1.75;
+      color: var(--muted); max-width: 500px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero-actions {
+      margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp .7s .3s ease both;
+    }
+    .btn-primary {
+      background: var(--rose); color: #fff;
+      padding: .85rem 2rem; border-radius: 50px;
+      font-size: .95rem; font-weight: 500; letter-spacing: .04em;
+      text-decoration: none; transition: background .25s, transform .2s, box-shadow .25s;
+      box-shadow: 0 6px 20px rgba(196,130,106,.35);
+    }
+    .btn-primary:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(59,42,36,.25); }
+    .btn-secondary {
+      background: transparent; color: var(--deep);
+      border: 1.5px solid var(--blush); padding: .85rem 2rem;
+      border-radius: 50px; font-size: .95rem; font-weight: 500;
+      text-decoration: none; transition: border-color .25s, color .25s;
+    }
+    .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 2.5rem;
+      animation: fadeUp .7s .4s ease both;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600; color: var(--deep);
+    }
+    .stat-label { font-size: .8rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+
+    .hero-right {
+      position: relative; z-index: 1;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-img-wrap {
+      position: relative; width: min(420px, 90%);
+    }
+    .hero-img-wrap img, .hero-img-placeholder {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+      display: block;
+    }
+    .hero-img-placeholder {
+      background: linear-gradient(160deg, var(--blush) 0%, var(--rose) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: rgba(255,255,255,.7);
+      text-align: center; padding: 2rem;
+    }
+    .hero-float-badge {
+      position: absolute; bottom: 8%; left: -12%;
+      background: #fff; border-radius: 16px;
+      padding: .8rem 1.2rem;
+      box-shadow: 0 8px 32px rgba(59,42,36,.12);
+      animation: float 3s ease-in-out infinite;
+    }
+    .hero-float-badge .icon { font-size: 1.5rem; }
+    .hero-float-badge .label { font-size: .75rem; color: var(--muted); }
+    .hero-float-badge .value { font-weight: 600; color: var(--deep); font-size: .9rem; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 6rem 6%; }
+    .section-tag {
+      font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--rose); font-weight: 600; margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600; color: var(--deep); line-height: 1.2;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-desc { margin-top: .8rem; font-size: 1rem; line-height: 1.75; color: var(--muted); max-width: 560px; }
+
+    /* ─── OPENING / PROBLEM ─── */
+    #opening {
+      background: var(--deep);
+      text-align: center;
+      padding: 5rem 6%;
+    }
+    #opening .section-tag { color: var(--gold); }
+    #opening .section-title { color: #fff; }
+    #opening .section-desc { color: rgba(255,255,255,.65); margin: .8rem auto 0; }
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .problem-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: 1.6rem 1.4rem; text-align: left;
+      transition: transform .3s, background .3s;
+    }
+    .problem-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.1); }
+    .problem-card .icon { font-size: 2rem; margin-bottom: .8rem; }
+    .problem-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #fff; margin-bottom: .4rem; }
+    .problem-card p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+
+    /* ─── BENEFITS ─── */
+    #benefits { background: var(--soft); }
+    .benefits-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .benefit-img-wrap {
+      position: relative;
+    }
+    .benefit-img-wrap img, .benefit-placeholder {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover;
+      border-radius: 40px; display: block;
+    }
+    .benefit-placeholder {
+      background: linear-gradient(135deg, var(--blush), var(--rose));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      color: rgba(255,255,255,.7); text-align: center; padding: 2rem;
+    }
+    .benefit-tag-img {
+      position: absolute; top: 5%; right: -8%;
+      background: var(--gold); color: #fff;
+      border-radius: 50%; width: 90px; height: 90px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 600; text-align: center; letter-spacing: .05em;
+      box-shadow: 0 6px 20px rgba(201,169,110,.4);
+      animation: float 4s ease-in-out infinite;
+    }
+    .benefit-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .benefit-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.2rem; border-radius: 14px;
+      background: #fff; border: 1px solid transparent;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      cursor: default;
+    }
+    .benefit-item:hover { border-color: var(--blush); box-shadow: 0 6px 20px rgba(196,130,106,.1); transform: translateX(6px); }
+    .benefit-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--soft); display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .benefit-text h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--deep); margin-bottom: .2rem; }
+    .benefit-text p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── WHY ─── */
+    #why { text-align: center; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .why-card {
+      background: #fff; border-radius: 20px; padding: 2rem 1.5rem;
+      border: 1px solid var(--blush);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .why-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(196,130,106,.15); border-color: var(--rose); }
+    .why-card .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; color: var(--blush); line-height: 1;
+    }
+    .why-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--deep); margin: .5rem 0 .4rem; }
+    .why-card p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── TESTIMONIALS ─── */
+    #testi { background: var(--soft); }
+    .testi-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
+    .testi-slider { margin-top: 2.5rem; overflow: hidden; position: relative; }
+    .testi-track {
+      display: flex; gap: 1.5rem;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+    }
+    .testi-card {
+      min-width: 320px; flex-shrink: 0;
+      background: #fff; border-radius: 20px; padding: 1.8rem;
+      border: 1px solid var(--blush);
+    }
+    .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: .8rem; }
+    .testi-text { font-size: .93rem; line-height: 1.75; color: var(--text); font-style: italic; margin-bottom: 1.2rem; }
+    .testi-user { display: flex; align-items: center; gap: .8rem; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blush), var(--rose));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; color: #fff; font-size: .9rem; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; color: var(--deep); font-size: .9rem; }
+    .testi-loc { font-size: .78rem; color: var(--muted); }
+    .testi-controls { display: flex; gap: .8rem; margin-top: 1.5rem; }
+    .testi-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1.5px solid var(--blush); background: #fff;
+      cursor: pointer; font-size: 1rem; color: var(--deep);
+      transition: background .25s, border-color .25s, color .25s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .testi-btn:hover { background: var(--rose); border-color: var(--rose); color: #fff; }
+
+    /* ─── URGENCY ─── */
+    #urgency {
+      background: linear-gradient(135deg, var(--deep) 0%, #5a3a30 100%);
+      text-align: center; color: #fff;
+    }
+    #urgency .section-title { color: #fff; }
+    #urgency .section-desc { color: rgba(255,255,255,.65); margin: .8rem auto 2rem; }
+    .countdown {
+      display: flex; justify-content: center; gap: 1rem; margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .count-box {
+      background: rgba(255,255,255,.1); border-radius: 14px;
+      padding: 1rem 1.5rem; min-width: 90px;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .count-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 600; color: var(--gold); line-height: 1;
+    }
+    .count-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: .3rem; }
+    .stock-bar-wrap { max-width: 400px; margin: 1.5rem auto; }
+    .stock-label { display: flex; justify-content: space-between; font-size: .82rem; color: rgba(255,255,255,.6); margin-bottom: .5rem; }
+    .stock-bar { height: 8px; background: rgba(255,255,255,.15); border-radius: 50px; overflow: hidden; }
+    .stock-fill { height: 100%; background: var(--gold); border-radius: 50px; width: 0%; transition: width 1.5s ease; }
+
+    /* ─── BONUS ─── */
+    #bonus { background: var(--cream); }
+    .bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .bonus-card {
+      background: #fff; border-radius: 20px; padding: 1.8rem;
+      border: 2px dashed var(--blush); text-align: center;
+      transition: border-color .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .bonus-card::before {
+      content: 'BONUS';
+      position: absolute; top: 12px; right: -18px;
+      background: var(--gold); color: #fff;
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      padding: .25rem 1.8rem; transform: rotate(45deg);
+    }
+    .bonus-card:hover { border-color: var(--rose); transform: translateY(-4px); }
+    .bonus-icon { font-size: 2.5rem; margin-bottom: .8rem; }
+    .bonus-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--deep); margin-bottom: .4rem; }
+    .bonus-card p { font-size: .86rem; color: var(--muted); line-height: 1.6; }
+    .bonus-value { margin-top: 1rem; font-weight: 600; color: var(--rose); font-size: .9rem; }
+    .bonus-value s { color: var(--muted); font-weight: 400; margin-right: .3rem; }
+
+    /* ─── CTA ─── */
+    #cta {
+      background: var(--rose);
+      text-align: center; color: #fff;
+      padding: 5rem 6%;
+    }
+    #cta .section-tag { color: rgba(255,255,255,.7); }
+    #cta .section-title { color: #fff; }
+    .price-display {
+      margin: 2rem auto;
+      display: inline-flex; flex-direction: column; align-items: center;
+    }
+    .price-old { font-size: 1.2rem; text-decoration: line-through; color: rgba(255,255,255,.55); }
+    .price-new {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 600; color: #fff; line-height: 1;
+    }
+    .price-period { font-size: .85rem; color: rgba(255,255,255,.7); }
+    .cta-btn {
+      display: inline-block;
+      background: var(--deep); color: #fff;
+      padding: 1.1rem 3rem; border-radius: 50px;
+      font-size: 1.05rem; font-weight: 600; letter-spacing: .04em;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(59,42,36,.35);
+      transition: transform .25s, box-shadow .25s;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    .cta-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 40px rgba(59,42,36,.45); animation: none; }
+    .cta-note { margin-top: 1rem; font-size: .82rem; color: rgba(255,255,255,.65); }
+
+    /* ─── GARANSI ─── */
+    #garansi { background: var(--soft); text-align: center; }
+    .guarantee-box {
+      max-width: 700px; margin: 2rem auto 0;
+      background: #fff; border-radius: 24px; padding: 2.5rem;
+      border: 2px solid var(--blush);
+      position: relative;
+    }
+    .guarantee-seal {
+      font-size: 4rem; margin-bottom: 1rem;
+    }
+    .guarantee-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; color: var(--deep); margin-bottom: .6rem;
+    }
+    .guarantee-box p { font-size: .95rem; color: var(--muted); line-height: 1.75; }
+
+    /* ─── NB ─── */
+    #nb {
+      background: var(--cream);
+      padding: 4rem 6%;
+    }
+    .nb-box {
+      max-width: 750px; margin: 0 auto;
+      background: rgba(201,169,110,.08); border-left: 4px solid var(--gold);
+      border-radius: 0 16px 16px 0; padding: 2rem;
+    }
+    .nb-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--deep); margin-bottom: .8rem;
+    }
+    .nb-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .nb-list li { font-size: .9rem; color: var(--text); padding-left: 1.4rem; position: relative; line-height: 1.6; }
+    .nb-list li::before { content: '◆'; position: absolute; left: 0; color: var(--gold); font-size: .6rem; top: .3rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--deep); color: rgba(255,255,255,.5);
+      text-align: center; padding: 2rem 6%;
+      font-size: .82rem;
+    }
+    footer span { color: var(--rose); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+    @keyframes pulse { 0%,100%{ box-shadow: 0 8px 30px rgba(59,42,36,.35); } 50%{ box-shadow: 0 12px 40px rgba(59,42,36,.55); } }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; padding: 6rem 5% 3rem; gap: 3rem; }
+      .hero-bg-shape { width: 100vw; height: 50vh; top: auto; bottom: 0; right: 0; border-radius: 60% 60% 0 0; }
+      .hero-right { order: -1; }
+      .hero-img-wrap { width: min(280px, 80%); }
+      .hero-float-badge { left: 0; bottom: -5%; }
+      .benefits-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .benefit-img-wrap { display: none; }
+      .testi-card { min-width: 280px; }
+      nav { padding: 1rem 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Zahra<span>Hijab</span></div>
+  <a href="#cta" class="nav-cta">Beli Sekarang</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-left">
+    <div class="hero-badge">✨ Koleksi Ramadan Special 2026</div>
+    <h1 class="hero-headline">
+      Tampil <em>Anggun</em> &amp;<br>Syar'i Setiap Hari
+    </h1>
+    <p class="hero-sub">
+      Hijab premium berbahan Ceruti Silk yang lembut, tidak mudah kusut, dan nyaman dipakai seharian. Tampil percaya diri dari pagi hingga malam.
+    </p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">🛍️ Order Sekarang</a>
+      <a href="#benefits" class="btn-secondary">Lihat Detail</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">12K+</div>
+        <div class="stat-label">Pembeli Puas</div>
+      </div>
+      <div>
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Rating</div>
+      </div>
+      <div>
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Warna Pilihan</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <!-- GANTI SRC DENGAN FOTO PRODUK UTAMA (rasio 3:4 terbaik) -->
+      <img src="https://i.pinimg.com/736x/cb/ab/97/cbab970c3f59bae0224fe0ba72d8a273.jpg" alt="Model Wanita Berhijab Elegan">
+      <div class="hero-float-badge">
+        <div class="icon">🌟</div>
+        <div class="label">Best Seller</div>
+        <div class="value">#1 Choice</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OPENING ═══ -->
+<section id="opening">
+  <div class="section-tag">Kamu Pernah Merasakan Ini?</div>
+  <h2 class="section-title" style="color:#fff">Lelah dengan Hijab yang <em style="color:var(--gold)">Bikin Ribet?</em></h2>
+  <p class="section-desc" style="margin:0 auto">Banyak perempuan menghadapi masalah yang sama setiap harinya…</p>
+  <div class="problem-grid">
+    <div class="problem-card reveal">
+      <div class="icon">😓</div>
+      <h3>Mudah Kusut & Lecek</h3>
+      <p>Baru dipakai sejam sudah terlihat berantakan, harus bolak-balik dirapikan.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="icon">🥵</div>
+      <h3>Gerah & Tidak Nyaman</h3>
+      <p>Bahan yang panas membuat tidak fokus bekerja dan tidak percaya diri.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="icon">💸</div>
+      <h3>Harga Mahal Tapi Kualitas Biasa</h3>
+      <p>Sudah keluar banyak uang, tapi hasilnya mengecewakan dalam beberapa minggu.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="icon">😬</div>
+      <h3>Susah Dipadukan</h3>
+      <p>Warna yang terbatas membuat outfit terasa itu-itu saja setiap hari.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BENEFITS ═══ -->
+<section id="benefits">
+  <div class="benefits-layout">
+    <div class="benefit-img-wrap reveal">
+      <!-- GANTI SRC DENGAN FOTO CLOSE-UP TEKSTUR / DETAIL HIJAB -->
+      <img src="https://i.pinimg.com/1200x/ad/b4/62/adb4629860877d48e0216030eb63294b.jpg" alt="Model Wanita Berhijab Elegan">
+      <div class="benefit-tag-img">PREMIUM<br>QUALITY</div>
+    </div>
+    <div>
+      <div class="section-tag">Keunggulan Produk</div>
+      <h2 class="section-title">Kenapa <em>Zahra Hijab</em><br>Beda dari yang Lain?</h2>
+      <div class="benefit-list">
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">🌸</div>
+          <div class="benefit-text">
+            <h4>Bahan Ceruti Silk Premium</h4>
+            <p>Lembut di kulit, tidak mudah kusut, dan tetap terlihat rapi seharian penuh.</p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">💨</div>
+          <div class="benefit-text">
+            <h4>Anti Gerah & Breathable</h4>
+            <p>Sirkulasi udara optimal sehingga nyaman dipakai di cuaca panas sekalipun.</p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">🎨</div>
+          <div class="benefit-text">
+            <h4>30+ Pilihan Warna Tren</h4>
+            <p>Koleksi warna terkini yang mudah dipadukan dengan berbagai outfit casual maupun formal.</p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">✨</div>
+          <div class="benefit-text">
+            <h4>Anti Melar & Tahan Lama</h4>
+            <p>Dijahit dengan teknik khusus agar bentuk tetap sempurna meski dicuci berkali-kali.</p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">📏</div>
+          <div class="benefit-text">
+            <h4>Ukuran Oversize Syar'i</h4>
+            <p>Panjang 200×75cm, menutupi dada dengan sempurna tanpa perlu tambahan ciput.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY ═══ -->
+<section id="why">
+  <div class="section-tag">Alasan Memilih Kami</div>
+  <h2 class="section-title">Mengapa <em>12.000+ Wanita</em><br>Mempercayai Kami?</h2>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="num">01</div>
+      <h3>Bahan Tersertifikasi</h3>
+      <p>Setiap bahan telah melalui uji laboratorium untuk keamanan kulit sensitif.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">02</div>
+      <h3>Pengiriman Cepat</h3>
+      <p>Ready stock, dikirim dalam 1×24 jam ke seluruh Indonesia via ekspedisi terpercaya.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">03</div>
+      <h3>Layanan 24/7</h3>
+      <p>Tim CS kami siap membantu kapan pun via WhatsApp, cepat dan ramah.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">04</div>
+      <h3>Ribuan Ulasan Positif</h3>
+      <p>Rating 4.9/5 dari belasan ribu pembeli nyata—bukan akun bot.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">05</div>
+      <h3>Garansi Penuh</h3>
+      <p>Tidak puas? Kami kembalikan uangmu 100% tanpa pertanyaan berlebihan.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">06</div>
+      <h3>UMKM Lokal Bangga</h3>
+      <p>Produk asli buatan anak bangsa, mendukung pengrajin lokal Indonesia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONI ═══ -->
+<section id="testi">
+  <div class="testi-header">
+    <div>
+      <div class="section-tag">Testimoni Nyata</div>
+      <h2 class="section-title">Apa Kata <em>Mereka?</em></h2>
+    </div>
+    <div class="testi-controls">
+      <button class="testi-btn" id="prev">&#8592;</button>
+      <button class="testi-btn" id="next">&#8594;</button>
+    </div>
+  </div>
+  <div class="testi-slider">
+    <div class="testi-track" id="track">
+
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Udah coba banyak merek hijab, tapi Zahra beda banget! Bahannya adem padahal seharian di luar. Warnanya juga cakep banget, langsung beli 3 sekalian."</p>
+        <div class="testi-user">
+          <div class="testi-avatar">SA</div>
+          <div>
+            <div class="testi-name">Siti Aulia</div>
+            <div class="testi-loc">⭐ Jakarta – Pembeli Verified</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Pertama lihat harganya agak ragu, tapi ternyata worth it banget! Udah 6 bulan dipakai masih bagus, nggak melar, nggak kusut. Highly recommended!"</p>
+        <div class="testi-user">
+          <div class="testi-avatar">RN</div>
+          <div>
+            <div class="testi-name">Rahma Nur</div>
+            <div class="testi-loc">⭐ Surabaya – Pembeli Verified</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Pengiriman super cepat! Pesan malam, besok udah sampai. Kualitasnya jauh di atas ekspektasi. Suami sampai bilang 'cantik banget pakai hijab baru'. 😊"</p>
+        <div class="testi-user">
+          <div class="testi-avatar">FM</div>
+          <div>
+            <div class="testi-name">Fitri Maharani</div>
+            <div class="testi-loc">⭐ Bandung – Pembeli Verified</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Hijab ini beneran awet! Sudah dicuci berkali-kali tetap bagus. CS-nya juga responsif banget, ramah, dan helpful. Bakal repeat order terus!"</p>
+        <div class="testi-user">
+          <div class="testi-avatar">DW</div>
+          <div>
+            <div class="testi-name">Dewi Wulandari</div>
+            <div class="testi-loc">⭐ Medan – Pembeli Verified</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Aku yang terbiasa pakai hijab biasa, pertama nyoba Zahra langsung berasa perbedaannya. Ringan, nggak gerah, jatuhnya cantik. Nggak mau balik ke yang lain."</p>
+        <div class="testi-user">
+          <div class="testi-avatar">IN</div>
+          <div>
+            <div class="testi-name">Indah Novianti</div>
+            <div class="testi-loc">⭐ Yogyakarta – Pembeli Verified</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ URGENCY ═══ -->
+<section id="urgency">
+  <div class="section-tag">⚡ Penawaran Terbatas</div>
+  <h2 class="section-title">Promo Berakhir Dalam</h2>
+  <p class="section-desc">Harga spesial ini hanya berlaku untuk pembelian hari ini. Jangan sampai menyesal!</p>
+  <div class="countdown">
+    <div class="count-box"><div class="count-num" id="hours">08</div><div class="count-label">Jam</div></div>
+    <div class="count-box"><div class="count-num" id="minutes">45</div><div class="count-label">Menit</div></div>
+    <div class="count-box"><div class="count-num" id="seconds">30</div><div class="count-label">Detik</div></div>
+  </div>
+  <div class="stock-bar-wrap">
+    <div class="stock-label"><span>Stok Tersisa</span><span>Hampir Habis!</span></div>
+    <div class="stock-bar"><div class="stock-fill" id="stockFill"></div></div>
+    <div style="text-align:right;font-size:.78rem;color:rgba(255,255,255,.55);margin-top:.4rem;">Hanya tersisa <strong style="color:var(--gold)">23 pcs</strong> dari 200 pcs</div>
+  </div>
+  <a href="#cta" class="btn-primary" style="margin-top:1rem;display:inline-block">🔥 Klaim Promo Sekarang</a>
+</section>
+
+<!-- ═══ BONUS ═══ -->
+<section id="bonus">
+  <div class="section-tag">Spesial Untuk Kamu</div>
+  <h2 class="section-title">Bonus Eksklusif <em>Gratis</em> untuk Pembelian Hari Ini</h2>
+  <p class="section-desc">Nilai total bonus melebihi harga hijabnya sendiri!</p>
+  <div class="bonus-grid">
+    <div class="bonus-card reveal">
+      <div class="bonus-icon">📦</div>
+      <h3>Pouch Hijab Premium</h3>
+      <p>Tempat penyimpanan hijab anti-debu berbahan kulit sintetik mewah untuk travel.</p>
+      <div class="bonus-value"><s>Rp 75.000</s> GRATIS!</div>
+    </div>
+    <div class="bonus-card reveal">
+      <div class="bonus-icon">📌</div>
+      <h3>Set Jarum Pentul Emas</h3>
+      <p>12 pcs jarum pentul anti-karat dengan kepala mutiara yang cantik dan aman.</p>
+      <div class="bonus-value"><s>Rp 35.000</s> GRATIS!</div>
+    </div>
+    <div class="bonus-card reveal">
+      <div class="bonus-icon">🎁</div>
+      <h3>Gift Box Cantik</h3>
+      <p>Dikemas dalam kotak hadiah premium—siap dijadikan kado untuk orang tersayang.</p>
+      <div class="bonus-value"><s>Rp 30.000</s> GRATIS!</div>
+    </div>
+    <div class="bonus-card reveal">
+      <div class="bonus-icon">💌</div>
+      <h3>E-Book Tutorial Styling</h3>
+      <p>Panduan 30 gaya hijab berbeda untuk berbagai kesempatan—casual, formal, hingga kondangan.</p>
+      <div class="bonus-value"><s>Rp 50.000</s> GRATIS!</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta">
+  <div class="section-tag">Ambil Penawaranmu</div>
+  <h2 class="section-title" style="color:#fff">Dapatkan <em style="color:var(--gold)">Zahra Hijab</em><br>Sebelum Kehabisan!</h2>
+  <div class="price-display">
+    <div class="price-old">Rp 299.000</div>
+    <div class="price-new">Rp 149.000</div>
+    <div class="price-period">+ Gratis Ongkir & 4 Bonus Eksklusif</div>
+  </div>
+  <br>
+    <a href="https://wa.me/6285797043563?text=Halo%2C%20saya%20mau%20order%20Zahra%20Hijab%20promo" class="cta-btn" target="_blank">
+    💬 Order via WhatsApp Sekarang
+    </a>
+  <p class="cta-note">✅ Bayar di tempat (COD) tersedia &nbsp;|&nbsp; 🔒 Transaksi aman &nbsp;|&nbsp; 🚚 Kirim ke seluruh Indonesia</p>
+</section>
+
+<!-- ═══ GARANSI ═══ -->
+<section id="garansi">
+  <div class="section-tag">Tanpa Risiko</div>
+  <h2 class="section-title">Garansi <em>Uang Kembali 100%</em></h2>
+  <div class="guarantee-box reveal">
+    <div class="guarantee-seal">🛡️</div>
+    <h3>30 Hari Money-Back Guarantee</h3>
+    <p>
+      Kami yakin 100% dengan kualitas produk kami. Jika dalam <strong>30 hari</strong> kamu merasa tidak puas dengan alasan apapun—bahan tidak sesuai, warna berbeda, atau apapun—kami akan <strong>mengembalikan uangmu sepenuhnya</strong> tanpa banyak tanya. Risiko sepenuhnya ada di tangan kami, bukan kamu.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ NB ═══ -->
+<section id="nb">
+  <div class="nb-box">
+    <h3>📋 Catatan Penting (NB)</h3>
+    <ul class="nb-list">
+      <li>Promo harga spesial hanya berlaku selama stok masih tersedia dan periode promo belum berakhir.</li>
+      <li>Bonus pouch, jarum pentul, gift box, dan e-book hanya untuk pembelian melalui link WhatsApp resmi kami.</li>
+      <li>Pengiriman dilakukan 1×24 jam setelah konfirmasi pembayaran (hari kerja, Senin–Sabtu).</li>
+      <li>Pastikan konfirmasi alamat lengkap dan nomor HP aktif agar pengiriman berjalan lancar.</li>
+      <li>Untuk klaim garansi, simpan foto produk dan bukti pembelian selama 30 hari pertama.</li>
+      <li>Warna yang tampil di layar mungkin sedikit berbeda karena perbedaan pengaturan monitor—kami berusaha menampilkan seakurat mungkin.</li>
+      <li>Hubungi CS kami di WhatsApp untuk konsultasi pemilihan warna sebelum memesan.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Zahra Hijab</span>. Semua hak dilindungi. Produk UMKM Lokal Indonesia 🇮🇩</p>
+</footer>
+
+<script>
+  // ── NAVBAR SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ── REVEAL ON SCROLL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── COUNTDOWN TIMER ──
+  const endTime = new Date().getTime() + (8 * 3600 + 45 * 60 + 30) * 1000;
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = Math.max(0, endTime - now);
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // ── STOCK BAR ──
+  setTimeout(() => {
+    document.getElementById('stockFill').style.width = '88%';
+  }, 600);
+
+  // ── TESTIMONIAL SLIDER ──
+  const track = document.getElementById('track');
+  const cards = track.querySelectorAll('.testi-card');
+  let current = 0;
+  function getVisible() { return window.innerWidth < 768 ? 1 : window.innerWidth < 1100 ? 2 : 3; }
+  function getCardWidth() {
+    const card = cards[0];
+    return card.offsetWidth + parseInt(getComputedStyle(track).gap);
+  }
+  function slide() {
+    track.style.transform = `translateX(-${current * getCardWidth()}px)`;
+  }
+  document.getElementById('next').addEventListener('click', () => {
+    const max = cards.length - getVisible();
+    current = current < max ? current + 1 : 0;
+    slide();
+  });
+  document.getElementById('prev').addEventListener('click', () => {
+    const max = cards.length - getVisible();
+    current = current > 0 ? current - 1 : max;
+    slide();
+  });
+  // Auto slide
+  setInterval(() => {
+    const max = cards.length - getVisible();
+    current = current < max ? current + 1 : 0;
+    slide();
+  }, 4000);
+</script>
+</body>
+</html>
