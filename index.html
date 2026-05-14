@@ -3,851 +3,1679 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AzMaza Hijab – Anggun Setiap Hari</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <title>Nasi Kuning - Kehangatan Rempah dalam Setiap Suapan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
 
+  <style>
     :root {
-      --cream: #faf6f0;
-      --blush: #e8d5c4;
-      --rose: #c4826a;
-      --deep: #3b2a24;
-      --gold: #c9a96e;
-      --soft: #f3ece5;
-      --text: #4a3228;
-      --muted: #9c7c70;
+      --turmeric:       #D4A017;
+      --turmeric-light: #F0C842;
+      --turmeric-dark:  #A67C00;
+      --turmeric-pale:  #FDF3C0;
+      --leaf-green:     #5A7A3A;
+      --leaf-light:     #8BAF5A;
+      --charcoal:       #1C1C1C;
+      --charcoal-soft:  #3A3A3A;
+      --cream:          #FAFAF5;
+      --white:          #FFFFFF;
+      --orange-blob:    #E07B2A;
+      --orange-blob-2:  #F4A460;
+      --font-serif:     'Playfair Display', Georgia, serif;
+      --font-sans:      'DM Sans', 'Helvetica Neue', sans-serif;
+      --radius-sm:   8px;
+      --radius-md:   16px;
+      --radius-lg:   32px;
+      --radius-pill: 999px;
+      --shadow-sm:   0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md:   0 6px 24px rgba(0,0,0,0.12);
+      --shadow-lg:   0 16px 48px rgba(0,0,0,0.18);
+      --shadow-gold: 0 8px 32px rgba(212,160,23,0.25);
     }
 
-    html { scroll-behavior: smooth; }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: 'Jost', sans-serif;
-      background: var(--cream);
-      color: var(--text);
+      font-family: var(--font-sans);
+      background-color: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.7;
       overflow-x: hidden;
     }
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
 
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--soft); }
-    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+    .serif   { font-family: var(--font-serif); }
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--turmeric-dark);
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+    .section-title span { color: var(--turmeric); font-style: italic; }
 
-    /* ─── NAVBAR ─── */
+    .container { width: 90%; max-width: 1100px; margin-inline: auto; }
+    section { padding: 80px 0; }
+
+    .top-bar {
+      background-color: var(--charcoal);
+      color: var(--white);
+      padding: 10px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .top-bar strong { color: var(--turmeric-light); }
+
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 6%;
-      background: rgba(250,246,240,0.92);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,245,0.94);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(196,130,106,0.15);
-      transition: box-shadow .3s;
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,160,23,0.15);
+      padding: 14px 0;
     }
-    nav.scrolled { box-shadow: 0 2px 24px rgba(59,42,36,0.08); }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem; font-weight: 600;
-      color: var(--deep); letter-spacing: .04em;
-    }
-    .nav-logo span { color: var(--rose); }
-    .nav-cta {
-      background: var(--rose); color: #fff;
-      padding: .55rem 1.4rem; border-radius: 50px;
-      font-size: .85rem; font-weight: 500; letter-spacing: .06em;
-      text-decoration: none; text-transform: uppercase;
-      transition: background .25s, transform .2s;
-    }
-    .nav-cta:hover { background: var(--deep); transform: scale(1.04); }
-
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
+    .nav-inner {
+      display: flex;
       align-items: center;
-      padding: 7rem 6% 4rem;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-brand { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700; color: var(--charcoal); }
+    .nav-brand span { color: var(--turmeric); font-style: italic; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--charcoal-soft); transition: color 0.25s; }
+    .nav-links a:hover { color: var(--turmeric); }
+    .nav-cta {
+      background: var(--turmeric);
+      color: var(--white);
+      padding: 9px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--turmeric-dark); transform: translateY(-1px); box-shadow: var(--shadow-gold); }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      padding: 80px 0;
       position: relative;
       overflow: hidden;
     }
-    .hero-bg-shape {
-      position: absolute; right: -10%; top: -5%;
-      width: 60vw; height: 110vh;
-      background: linear-gradient(135deg, var(--blush) 0%, var(--soft) 100%);
-      border-radius: 60% 0 0 60%;
-      z-index: 0;
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(240,200,66,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(90,122,58,0.08) 0%, transparent 60%);
+      pointer-events: none;
     }
-    .hero-left { position: relative; z-index: 1; }
+    .hero-text { position: relative; z-index: 2; }
     .hero-badge {
-      display: inline-block;
-      background: var(--gold); color: #fff;
-      font-size: .72rem; font-weight: 600; letter-spacing: .1em;
-      text-transform: uppercase; padding: .35rem 1rem;
-      border-radius: 50px; margin-bottom: 1.5rem;
-      animation: fadeUp .6s ease both;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--turmeric-pale);
+      border: 1px solid rgba(212,160,23,0.3);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--turmeric-dark);
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--leaf-green);
     }
     .hero-headline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 600; line-height: 1.15;
-      color: var(--deep);
-      animation: fadeUp .7s .1s ease both;
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 1.25rem;
     }
-    .hero-headline em { font-style: italic; color: var(--rose); }
-    .hero-sub {
-      margin-top: 1.2rem; font-size: 1.05rem; line-height: 1.75;
-      color: var(--muted); max-width: 500px;
-      animation: fadeUp .7s .2s ease both;
+    .hero-headline .highlight { color: var(--turmeric); font-style: italic; display: block; }
+    .hero-sub { font-size: 1rem; color: var(--charcoal-soft); max-width: 430px; margin-bottom: 2rem; line-height: 1.75; }
+    .hero-hours {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border-left: 4px solid var(--turmeric);
+      padding: 12px 20px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 2rem;
     }
-    .hero-actions {
-      margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;
-      animation: fadeUp .7s .3s ease both;
+    .hero-hours strong { color: var(--turmeric-dark); }
+    .hero-hours-icon {
+      width: 18px; height: 18px;
+      border: 2px solid var(--turmeric);
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
     }
-    .btn-primary {
-      background: var(--rose); color: #fff;
-      padding: .85rem 2rem; border-radius: 50px;
-      font-size: .95rem; font-weight: 500; letter-spacing: .04em;
-      text-decoration: none; transition: background .25s, transform .2s, box-shadow .25s;
-      box-shadow: 0 6px 20px rgba(196,130,106,.35);
+    .hero-hours-icon::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 7px;
+      width: 2px; height: 7px;
+      background: var(--turmeric);
+      border-radius: 1px;
     }
-    .btn-primary:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(59,42,36,.25); }
-    .btn-secondary {
-      background: transparent; color: var(--deep);
-      border: 1.5px solid var(--blush); padding: .85rem 2rem;
-      border-radius: 50px; font-size: .95rem; font-weight: 500;
-      text-decoration: none; transition: border-color .25s, color .25s;
-    }
-    .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
-    .hero-stats {
-      display: flex; gap: 2rem; margin-top: 2.5rem;
-      animation: fadeUp .7s .4s ease both;
-    }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 600; color: var(--deep);
-    }
-    .stat-label { font-size: .8rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    .hero-right {
-      position: relative; z-index: 1;
-      display: flex; justify-content: center; align-items: center;
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 480px;
     }
-    .hero-img-wrap {
-      position: relative; width: min(420px, 90%);
+    .blob-orange {
+      position: absolute;
+      top: -30px; right: -20px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle at 40% 40%, var(--orange-blob-2), var(--orange-blob));
+      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+      opacity: 0.75;
+      z-index: 0;
+      animation: blobPulse 8s ease-in-out infinite;
     }
-    .hero-img-wrap img, .hero-img-placeholder {
-      width: 100%; aspect-ratio: 3/4;
+    .blob-green {
+      position: absolute;
+      bottom: 20px; left: 10px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle at 50% 50%, var(--leaf-light), var(--leaf-green));
+      border-radius: 55% 45% 40% 60% / 60% 40% 55% 45%;
+      opacity: 0.55;
+      z-index: 0;
+      animation: blobPulse 10s ease-in-out 2s infinite reverse;
+    }
+    .blob-yellow {
+      position: absolute;
+      top: 60px; left: 30px;
+      width: 100px; height: 100px;
+      background: var(--turmeric-pale);
+      border-radius: 50% 60% 45% 55%;
+      opacity: 0.8;
+      z-index: 0;
+      animation: blobPulse 12s ease-in-out 4s infinite;
+    }
+    .hero-plate-wrap {
+      position: relative;
+      z-index: 1;
+      width: 340px; height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-plate-shadow {
+      position: absolute;
+      bottom: -20px; left: 50%;
+      transform: translateX(-50%);
+      width: 80%; height: 40px;
+      background: radial-gradient(ellipse, rgba(0,0,0,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+    #hero-plate {
+      position: relative;
+      z-index: 1;
+      width: 320px; height: 320px;
       object-fit: cover;
-      border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
-      display: block;
+      border-radius: 50%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.22), 0 0 0 8px rgba(255,255,255,0.6);
+      animation: plateFloat 6s ease-in-out infinite;
     }
-    .hero-img-placeholder {
-      background: linear-gradient(160deg, var(--blush) 0%, var(--rose) 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; color: rgba(255,255,255,.7);
-      text-align: center; padding: 2rem;
+    .plate-placeholder {
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--turmeric-pale) 0%, var(--turmeric-light) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.22), 0 0 0 8px rgba(255,255,255,0.6);
+      animation: plateFloat 6s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
     }
-    .hero-float-badge {
-      position: absolute; bottom: 8%; left: -12%;
-      background: #fff; border-radius: 16px;
-      padding: .8rem 1.2rem;
-      box-shadow: 0 8px 32px rgba(59,42,36,.12);
-      animation: float 3s ease-in-out infinite;
-    }
-    .hero-float-badge .icon { font-size: 1.5rem; }
-    .hero-float-badge .label { font-size: .75rem; color: var(--muted); }
-    .hero-float-badge .value { font-weight: 600; color: var(--deep); font-size: .9rem; }
-
-    /* ─── SECTION BASE ─── */
-    section { padding: 6rem 6%; }
-    .section-tag {
-      font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--rose); font-weight: 600; margin-bottom: .6rem;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 600; color: var(--deep); line-height: 1.2;
-    }
-    .section-title em { font-style: italic; color: var(--rose); }
-    .section-desc { margin-top: .8rem; font-size: 1rem; line-height: 1.75; color: var(--muted); max-width: 560px; }
-
-    /* ─── OPENING / PROBLEM ─── */
-    #opening {
-      background: var(--deep);
+    .plate-placeholder-text {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--turmeric-dark);
       text-align: center;
-      padding: 5rem 6%;
+      padding: 20px;
+      font-style: italic;
     }
-    #opening .section-tag { color: var(--gold); }
-    #opening .section-title { color: #fff; }
-    #opening .section-desc { color: rgba(255,255,255,.65); margin: .8rem auto 0; }
-    .problem-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem; margin-top: 3rem;
-    }
-    .problem-card {
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-      border-radius: 16px; padding: 1.6rem 1.4rem; text-align: left;
-      transition: transform .3s, background .3s;
-    }
-    .problem-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.1); }
-    .problem-card .icon { font-size: 2rem; margin-bottom: .8rem; }
-    .problem-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #fff; margin-bottom: .4rem; }
-    .problem-card p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+    .plate-placeholder-sub { font-size: 0.75rem; font-family: var(--font-sans); color: var(--charcoal-soft); margin-top: 6px; }
 
-    /* ─── BENEFITS ─── */
-    #benefits { background: var(--soft); }
-    .benefits-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .benefit-img-wrap {
+    @keyframes blobPulse {
+      0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+      33%       { border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%; }
+      66%       { border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; }
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0px);   }
+      50%       { transform: translateY(-8px);  }
+    }
+    @keyframes spiceFloat {
+      0%, 100% { transform: translateY(0px) scale(1);    opacity: 0.7; }
+      50%       { transform: translateY(-14px) scale(1.1); opacity: 1;   }
+    }
+    @keyframes plateFloat {
+      0%, 100% { transform: translateY(0px);  }
+      50%       { transform: translateY(-12px); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    .fade-up { animation: fadeUp 0.7s ease forwards; }
+    .delay-1 { animation-delay: 0.15s; opacity: 0; }
+    .delay-2 { animation-delay: 0.3s;  opacity: 0; }
+    .delay-3 { animation-delay: 0.45s; opacity: 0; }
+    .delay-4 { animation-delay: 0.6s;  opacity: 0; }
+
+    .spice-dot {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--turmeric);
+      opacity: 0.65;
+      z-index: 1;
+      animation: spiceFloat 4s ease-in-out infinite;
+    }
+    .spice-dot--green {
+      background: var(--leaf-green);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--turmeric); color: var(--white); box-shadow: var(--shadow-gold); }
+    .btn-primary:hover { background: var(--turmeric-dark); transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 36px rgba(212,160,23,0.4); }
+    .btn-secondary { background: transparent; color: var(--charcoal); border: 2px solid var(--charcoal); }
+    .btn-secondary:hover { background: var(--charcoal); color: var(--white); transform: translateY(-3px) scale(1.03); }
+    .btn-wa { background: #25D366; color: var(--white); font-size: 1.05rem; padding: 16px 36px; box-shadow: 0 8px 28px rgba(37,211,102,0.35); }
+    .btn-wa:hover { background: #1da851; transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 40px rgba(37,211,102,0.45); }
+    .btn-maps { background: var(--white); color: #1a73e8; border: 2px solid #1a73e8; font-size: 0.88rem; }
+    .btn-maps:hover { background: #1a73e8; color: var(--white); transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 24px rgba(26,115,232,0.3); }
+
+    .opening {
+      background: var(--charcoal);
+      color: var(--white);
+      text-align: center;
+      padding: 72px 0;
       position: relative;
+      overflow: hidden;
     }
-    .benefit-img-wrap img, .benefit-placeholder {
-      width: 100%; aspect-ratio: 4/5; object-fit: cover;
-      border-radius: 40px; display: block;
+    .opening::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(212,160,23,0.15) 0%, transparent 60%);
+      pointer-events: none;
     }
-    .benefit-placeholder {
-      background: linear-gradient(135deg, var(--blush), var(--rose));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
-      color: rgba(255,255,255,.7); text-align: center; padding: 2rem;
+    .opening blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-style: italic;
+      line-height: 1.55;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
     }
-    .benefit-tag-img {
-      position: absolute; top: 5%; right: -8%;
-      background: var(--gold); color: #fff;
-      border-radius: 50%; width: 90px; height: 90px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      font-size: .7rem; font-weight: 600; text-align: center; letter-spacing: .05em;
-      box-shadow: 0 6px 20px rgba(201,169,110,.4);
-      animation: float 4s ease-in-out infinite;
+    .opening blockquote::before,
+    .opening blockquote::after { content: '"'; font-size: 5rem; color: var(--turmeric); opacity: 0.3; line-height: 0; vertical-align: -0.6em; }
+    .opening p { font-size: 0.95rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .benefit { background: var(--cream); }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header .section-label { margin-bottom: 0.5rem; display: block; }
+    .benefit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(212,160,23,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
     }
-    .benefit-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
-    .benefit-item {
-      display: flex; gap: 1rem; align-items: flex-start;
-      padding: 1.2rem; border-radius: 14px;
-      background: #fff; border: 1px solid transparent;
-      transition: border-color .3s, box-shadow .3s, transform .3s;
-      cursor: default;
-    }
-    .benefit-item:hover { border-color: var(--blush); box-shadow: 0 6px 20px rgba(196,130,106,.1); transform: translateX(6px); }
+    .benefit-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
     .benefit-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: var(--soft); display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; flex-shrink: 0;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--turmeric-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
     }
-    .benefit-text h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--deep); margin-bottom: .2rem; }
-    .benefit-text p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+    .benefit-icon svg { width: 26px; height: 26px; }
+    .benefit-card h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .benefit-card p { font-size: 0.875rem; color: var(--charcoal-soft); line-height: 1.65; }
 
-    /* ─── WHY ─── */
-    #why { text-align: center; }
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-    .why-card {
-      background: #fff; border-radius: 20px; padding: 2rem 1.5rem;
-      border: 1px solid var(--blush);
-      transition: transform .3s, box-shadow .3s, border-color .3s;
-    }
-    .why-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(196,130,106,.15); border-color: var(--rose); }
-    .why-card .num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem; font-weight: 300; color: var(--blush); line-height: 1;
-    }
-    .why-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--deep); margin: .5rem 0 .4rem; }
-    .why-card p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+    /* ============================================================
+       KATALOG — REDESIGN: 1 VARIAN + LAYANAN ANTAR & TUMPENG
+       ============================================================ */
+    .katalog { background: var(--turmeric-pale); }
 
-    /* ─── TESTIMONIALS ─── */
-    #testi { background: var(--soft); }
-    .testi-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
-    .testi-slider { margin-top: 2.5rem; overflow: hidden; position: relative; }
-    .testi-track {
-      display: flex; gap: 1.5rem;
-      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+    /* Kartu Varian Tunggal — lebih lebar, terpusat */
+    .menu-single-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
     }
-    .testi-card {
-      min-width: 320px; flex-shrink: 0;
-      background: #fff; border-radius: 20px; padding: 1.8rem;
-      border: 1px solid var(--blush);
+    .menu-card-single {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      max-width: 520px;
+      width: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: .8rem; }
-    .testi-text { font-size: .93rem; line-height: 1.75; color: var(--text); font-style: italic; margin-bottom: 1.2rem; }
-    .testi-user { display: flex; align-items: center; gap: .8rem; }
-    .testi-avatar {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--blush), var(--rose));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 600; color: #fff; font-size: .9rem; flex-shrink: 0;
-    }
-    .testi-name { font-weight: 600; color: var(--deep); font-size: .9rem; }
-    .testi-loc { font-size: .78rem; color: var(--muted); }
-    .testi-controls { display: flex; gap: .8rem; margin-top: 1.5rem; }
-    .testi-btn {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 1.5px solid var(--blush); background: #fff;
-      cursor: pointer; font-size: 1rem; color: var(--deep);
-      transition: background .25s, border-color .25s, color .25s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .testi-btn:hover { background: var(--rose); border-color: var(--rose); color: #fff; }
-
-    /* ─── URGENCY ─── */
-    #urgency {
-      background: linear-gradient(135deg, var(--deep) 0%, #5a3a30 100%);
-      text-align: center; color: #fff;
-    }
-    #urgency .section-title { color: #fff; }
-    #urgency .section-desc { color: rgba(255,255,255,.65); margin: .8rem auto 2rem; }
-    .countdown {
-      display: flex; justify-content: center; gap: 1rem; margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-    .count-box {
-      background: rgba(255,255,255,.1); border-radius: 14px;
-      padding: 1rem 1.5rem; min-width: 90px;
-      border: 1px solid rgba(255,255,255,.15);
-    }
-    .count-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem; font-weight: 600; color: var(--gold); line-height: 1;
-    }
-    .count-label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: .3rem; }
-    .stock-bar-wrap { max-width: 400px; margin: 1.5rem auto; }
-    .stock-label { display: flex; justify-content: space-between; font-size: .82rem; color: rgba(255,255,255,.6); margin-bottom: .5rem; }
-    .stock-bar { height: 8px; background: rgba(255,255,255,.15); border-radius: 50px; overflow: hidden; }
-    .stock-fill { height: 100%; background: var(--gold); border-radius: 50px; width: 0%; transition: width 1.5s ease; }
-
-    /* ─── BONUS ─── */
-    #bonus { background: var(--cream); }
-    .bonus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
-    .bonus-card {
-      background: #fff; border-radius: 20px; padding: 1.8rem;
-      border: 2px dashed var(--blush); text-align: center;
-      transition: border-color .3s, transform .3s;
-      position: relative; overflow: hidden;
-    }
-    .bonus-card::before {
-      content: 'BONUS';
-      position: absolute; top: 12px; right: -18px;
-      background: var(--gold); color: #fff;
-      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
-      padding: .25rem 1.8rem; transform: rotate(45deg);
-    }
-    .bonus-card:hover { border-color: var(--rose); transform: translateY(-4px); }
-    .bonus-icon { font-size: 2.5rem; margin-bottom: .8rem; }
-    .bonus-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--deep); margin-bottom: .4rem; }
-    .bonus-card p { font-size: .86rem; color: var(--muted); line-height: 1.6; }
-    .bonus-value { margin-top: 1rem; font-weight: 600; color: var(--rose); font-size: .9rem; }
-    .bonus-value s { color: var(--muted); font-weight: 400; margin-right: .3rem; }
-
-    /* ─── CTA ─── */
-    #cta {
-      background: var(--rose);
-      text-align: center; color: #fff;
-      padding: 5rem 6%;
-    }
-    #cta .section-tag { color: rgba(255,255,255,.7); }
-    #cta .section-title { color: #fff; }
-    .price-display {
-      margin: 2rem auto;
-      display: inline-flex; flex-direction: column; align-items: center;
-    }
-    .price-old { font-size: 1.2rem; text-decoration: line-through; color: rgba(255,255,255,.55); }
-    .price-new {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4rem; font-weight: 600; color: #fff; line-height: 1;
-    }
-    .price-period { font-size: .85rem; color: rgba(255,255,255,.7); }
-    .cta-btn {
-      display: inline-block;
-      background: var(--deep); color: #fff;
-      padding: 1.1rem 3rem; border-radius: 50px;
-      font-size: 1.05rem; font-weight: 600; letter-spacing: .04em;
-      text-decoration: none;
-      box-shadow: 0 8px 30px rgba(59,42,36,.35);
-      transition: transform .25s, box-shadow .25s;
-      animation: pulse 2.5s ease-in-out infinite;
-    }
-    .cta-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 40px rgba(59,42,36,.45); animation: none; }
-    .cta-note { margin-top: 1rem; font-size: .82rem; color: rgba(255,255,255,.65); }
-
-    /* ─── GARANSI ─── */
-    #garansi { background: var(--soft); text-align: center; }
-    .guarantee-box {
-      max-width: 700px; margin: 2rem auto 0;
-      background: #fff; border-radius: 24px; padding: 2.5rem;
-      border: 2px solid var(--blush);
+    .menu-card-single:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .menu-img-wrap {
+      height: 240px;
+      background: linear-gradient(135deg, var(--turmeric-light), var(--turmeric));
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      overflow: hidden;
     }
-    .guarantee-seal {
-      font-size: 4rem; margin-bottom: 1rem;
+    .menu-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .menu-card-single:hover .menu-img-wrap img { transform: scale(1.06); }
+    .menu-img-placeholder {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      padding: 1rem;
     }
-    .guarantee-box h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; color: var(--deep); margin-bottom: .6rem;
+    .menu-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: var(--charcoal);
+      color: var(--turmeric-light);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
     }
-    .guarantee-box p { font-size: .95rem; color: var(--muted); line-height: 1.75; }
+    .menu-body-single { padding: 1.75rem 2rem 2rem; }
+    .menu-body-single h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .menu-body-single p { font-size: 0.9rem; color: var(--charcoal-soft); line-height: 1.65; margin-bottom: 1rem; }
+    .menu-price-wrap { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .menu-price { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--turmeric-dark); }
+    .menu-price-note { font-size: 0.8rem; color: #888; }
 
-    /* ─── NB ─── */
-    #nb {
+    /* Pilihan Lauk dalam kartu */
+    .lauk-list {
+      background: var(--turmeric-pale);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .lauk-list-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--turmeric-dark); margin-bottom: 0.6rem; }
+    .lauk-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .lauk-tag {
+      background: var(--white);
+      border: 1px solid rgba(212,160,23,0.3);
+      border-radius: var(--radius-pill);
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      color: var(--charcoal-soft);
+    }
+
+    /* Kartu Layanan (Antar & Tumpeng) */
+    .layanan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .layanan-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 2px solid transparent;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    }
+    .layanan-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(212,160,23,0.3); }
+    .layanan-icon {
+      width: 60px; height: 60px;
+      border-radius: var(--radius-md);
+      background: var(--turmeric-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.8rem;
+    }
+    .layanan-card h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .layanan-card p { font-size: 0.875rem; color: var(--charcoal-soft); line-height: 1.65; margin-bottom: 1.25rem; }
+    .layanan-highlights { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.45rem; }
+    .layanan-highlights li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 0.845rem;
+      color: var(--charcoal-soft);
+    }
+    .layanan-highlights li::before {
+      content: '✓';
+      color: var(--leaf-green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .layanan-cta-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--turmeric-pale);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      color: var(--turmeric-dark);
+      font-weight: 500;
+    }
+
+    .testimoni { background: var(--white); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .testi-card {
       background: var(--cream);
-      padding: 4rem 6%;
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      border: 1px solid rgba(212,160,23,0.12);
+      position: relative;
+      transition: transform 0.3s ease;
     }
-    .nb-box {
-      max-width: 750px; margin: 0 auto;
-      background: rgba(201,169,110,.08); border-left: 4px solid var(--gold);
-      border-radius: 0 16px 16px 0; padding: 2rem;
+    .testi-card:hover { transform: translateY(-4px); }
+    .testi-card::before { content: '"'; position: absolute; top: 12px; left: 18px; font-family: var(--font-serif); font-size: 4rem; line-height: 1; color: var(--turmeric-light); opacity: 0.5; }
+    .testi-stars { display: flex; gap: 3px; margin-bottom: 0.75rem; }
+    .star { width: 14px; height: 14px; background: var(--turmeric); clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+    .testi-text { font-size: 0.9rem; color: var(--charcoal-soft); line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--turmeric); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+    .testi-name { font-weight: 600; font-size: 0.875rem; color: var(--charcoal); }
+    .testi-location { font-size: 0.775rem; color: #888; }
+
+    .urgensi {
+      background: linear-gradient(135deg, var(--charcoal) 0%, #2E2E1E 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 72px 0;
+      position: relative;
+      overflow: hidden;
     }
-    .nb-box h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem; color: var(--deep); margin-bottom: .8rem;
+    .urgensi::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 120%, rgba(212,160,23,0.2) 0%, transparent 55%); pointer-events: none; }
+    .urgensi h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.75rem; }
+    .urgensi h2 span { color: var(--turmeric-light); font-style: italic; }
+    .urgensi-sub { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 2.5rem; }
+    .timer-wrap { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .timer-box { text-align: center; min-width: 80px; }
+    .timer-digit { display: block; font-family: var(--font-serif); font-size: 3rem; font-weight: 900; color: var(--turmeric-light); line-height: 1; }
+    .timer-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .timer-sep { font-family: var(--font-serif); font-size: 2.5rem; color: var(--turmeric); align-self: flex-start; padding-top: 8px; }
+    .stock-bar-wrap { max-width: 400px; margin: 0 auto 2rem; }
+    .stock-bar-label { display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.65); margin-bottom: 6px; }
+    .stock-bar { height: 10px; background: rgba(255,255,255,0.15); border-radius: var(--radius-pill); overflow: hidden; }
+    .stock-bar-fill { height: 100%; border-radius: var(--radius-pill); background: linear-gradient(90deg, var(--turmeric-dark), var(--turmeric-light)); width: 72%; transition: width 1s ease; }
+
+    .bonus { background: var(--cream); }
+    .bonus-card { background: var(--white); border: 2px dashed var(--turmeric); border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; max-width: 640px; margin: 0 auto; }
+    .bonus-tag { display: inline-block; background: var(--turmeric); color: var(--white); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 16px; border-radius: var(--radius-pill); margin-bottom: 1rem; }
+    .bonus-card h2 { font-family: var(--font-serif); font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; color: var(--charcoal); margin-bottom: 1rem; }
+    .bonus-card h2 span { color: var(--turmeric); font-style: italic; }
+    .bonus-list { list-style: none; text-align: left; max-width: 400px; margin: 0 auto 1.5rem; }
+    .bonus-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; color: var(--charcoal-soft); padding: 6px 0; border-bottom: 1px solid rgba(212,160,23,0.12); }
+    .bonus-list li:last-child { border-bottom: none; }
+    .bonus-check { width: 20px; height: 20px; border-radius: 50%; background: var(--leaf-green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .bonus-check svg { width: 11px; height: 11px; stroke: white; stroke-width: 2.5; fill: none; }
+
+    .cta-section { background: linear-gradient(135deg, var(--turmeric-pale), var(--white)); text-align: center; padding: 80px 0; }
+    .cta-section h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--charcoal); margin-bottom: 0.75rem; }
+    .cta-section h2 span { color: var(--turmeric); font-style: italic; }
+    .cta-section p { color: var(--charcoal-soft); font-size: 0.95rem; max-width: 480px; margin: 0 auto 2rem; }
+
+    .lokasi { background: var(--white); }
+    .lokasi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .lokasi-info h2 { font-family: var(--font-serif); font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: var(--charcoal); margin-bottom: 1rem; }
+    .lokasi-info h2 span { color: var(--turmeric); font-style: italic; }
+    .lokasi-detail { background: var(--cream); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--turmeric); }
+    .lokasi-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 0.75rem; }
+    .lokasi-row:last-child { margin-bottom: 0; }
+    .lokasi-icon { width: 20px; flex-shrink: 0; color: var(--turmeric-dark); margin-top: 2px; }
+    .lokasi-row span { font-size: 0.88rem; color: var(--charcoal-soft); line-height: 1.55; }
+    .lokasi-row strong { color: var(--charcoal); }
+    .map-placeholder {
+      background: linear-gradient(135deg, #e8f4fd, #d0e8f8);
+      border-radius: var(--radius-lg);
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #c0d8f0;
+      gap: 0.75rem;
     }
-    .nb-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
-    .nb-list li { font-size: .9rem; color: var(--text); padding-left: 1.4rem; position: relative; line-height: 1.6; }
-    .nb-list li::before { content: '◆'; position: absolute; left: 0; color: var(--gold); font-size: .6rem; top: .3rem; }
+    .map-placeholder-text { font-size: 0.85rem; color: #555; font-style: italic; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--deep); color: rgba(255,255,255,.5);
-      text-align: center; padding: 2rem 6%;
-      font-size: .82rem;
+    .garansi { background: var(--charcoal); color: var(--white); padding: 60px 0; }
+    .garansi-inner { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; justify-content: center; text-align: center; }
+    .garansi-badge { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--turmeric-dark), var(--turmeric-light)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: var(--shadow-gold); }
+    .garansi-badge svg { width: 44px; height: 44px; }
+    .garansi-content { max-width: 540px; }
+    .garansi-content h2 { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .garansi-content h2 span { color: var(--turmeric-light); font-style: italic; }
+    .garansi-content p { font-size: 0.92rem; color: rgba(255,255,255,0.72); line-height: 1.75; }
+
+    .nb-section { background: var(--turmeric-pale); padding: 48px 0; }
+    .nb-box { background: var(--white); border: 1px solid rgba(212,160,23,0.25); border-radius: var(--radius-md); padding: 1.75rem 2rem; max-width: 700px; margin: 0 auto; }
+    .nb-box h4 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--turmeric-dark); margin-bottom: 0.75rem; letter-spacing: 0.04em; }
+    .nb-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .nb-box ul li { font-size: 0.875rem; color: var(--charcoal-soft); padding-left: 1.2rem; position: relative; }
+    .nb-box ul li::before { content: '-'; position: absolute; left: 0; color: var(--turmeric); }
+
+    footer { background: var(--charcoal); color: rgba(255,255,255,0.6); padding: 32px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; color: var(--white); }
+    .footer-brand span { color: var(--turmeric); font-style: italic; }
+    .footer-creator { display: flex; align-items: center; gap: 12px; }
+    .footer-logo-placeholder { width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgb(255, 255, 255); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .footer-logo-placeholder img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-logo-placeholder .logo-text { font-size: 0.6rem; color: rgba(255,255,255,0.5); text-align: center; padding: 2px; }
+    .footer-creator-info { font-size: 0.8rem; line-height: 1.5; }
+    .footer-creator-name { color: var(--white); font-weight: 600; font-size: 0.85rem; }
+    .footer-copy { font-size: 0.775rem; text-align: center; }
+
+    .superman-text {
+      font-family: 'Oswald', sans-serif; /* atau 'Oswald', sans-serif */
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--turmeric);
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 1.1em;
     }
-    footer span { color: var(--rose); }
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
-    @keyframes pulse { 0%,100%{ box-shadow: 0 8px 30px rgba(59,42,36,.35); } 50%{ box-shadow: 0 12px 40px rgba(59,42,36,.55); } }
+    /* TUMPENG GALLERY */
+    .tumpeng-gallery {
+      background: var(--white);
+    }
+    .tumpeng-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .tumpeng-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tumpeng-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .tumpeng-img-wrap {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tumpeng-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .tumpeng-card:hover .tumpeng-img-wrap img {
+      transform: scale(1.06);
+    }
+    .tumpeng-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--turmeric-pale), var(--turmeric-light));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--turmeric-dark);
+      font-family: var(--font-serif);
+      font-style: italic;
+      text-align: center;
+      padding: 1rem;
+    }
+    .tumpeng-placeholder-text {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .tumpeng-placeholder-sub {
+      font-size: 0.75rem;
+      font-family: var(--font-sans);
+      color: var(--charcoal-soft);
+    }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* OWNER GALLERY */
+    .owner-gallery {
+      background: var(--turmeric-pale);
+    }
+    .owner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .owner-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .owner-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .owner-img-wrap {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+    .owner-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .owner-card:hover .owner-img-wrap img {
+      transform: scale(1.06);
+    }
+    .owner-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--leaf-light), var(--leaf-green));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-family: var(--font-serif);
+      font-style: italic;
+      text-align: center;
+      padding: 1rem;
+    }
+    .owner-placeholder-text {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .owner-placeholder-sub {
+      font-size: 0.75rem;
+      font-family: var(--font-sans);
+      color: rgba(255,255,255,0.9);
+    }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      #hero { grid-template-columns: 1fr; padding: 6rem 5% 3rem; gap: 3rem; }
-      .hero-bg-shape { width: 100vw; height: 50vh; top: auto; bottom: 0; right: 0; border-radius: 60% 60% 0 0; }
-      .hero-right { order: -1; }
-      .hero-img-wrap { width: min(280px, 80%); }
-      .hero-float-badge { left: 0; bottom: -5%; }
-      .benefits-layout { grid-template-columns: 1fr; gap: 2rem; }
-      .benefit-img-wrap { display: none; }
-      .testi-card { min-width: 280px; }
-      nav { padding: 1rem 5%; }
+      nav .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 60px 0 40px; gap: 0; }
+      .hero-text { order: 2; }
+      .hero-visual { order: 1; min-height: 300px; margin-bottom: 1.5rem; }
+      .hero-sub { margin-inline: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-hours { margin-inline: auto; }
+      .blob-orange { width: 220px; height: 220px; top: -10px; right: -10px; }
+      .blob-green  { width: 100px; height: 100px; }
+      .spice-dot { display: none; }
+      .hero-visual > div[style*="400px"],
+      .hero-visual > div[style*="460px"] { width: 260px !important; height: 260px !important; }
+      .lokasi-inner { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-copy { text-align: left; }
+      .garansi-inner { flex-direction: column; }
+      section { padding: 60px 0; }
+
+      /* Naskun1 - bulat sempurna */
+      .hero-plate-wrap { width: 220px !important; height: 220px !important; }
+      .plate-placeholder { width: 220px !important; height: 220px !important; border-radius: 50% !important; }
+      #hero-plate {
+        width: 220px !important;
+        height: 220px !important;
+        min-width: 220px !important;
+        min-height: 220px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+      }
+
+      /* Tinggi container gambar di mobile */
+      .menu-img-wrap { height: 220px; }
+      .tumpeng-img-wrap { height: 220px; }
+      .owner-img-wrap { height: 220px; }
+
+      /* Base semua gambar - fit container, bisa dioverride per gambar */
+      .menu-img-wrap img,
+      .tumpeng-img-wrap img,
+      .owner-img-wrap img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        margin-top: 0 !important;
+        transform: none !important;
+        transform-origin: unset !important;
+        object-position: center center !important;
+      }
+
+      /* Naskun2 - geser ke bawah, ubah angka 60% lebih besar = lebih bawah */
+      .menu-img-wrap img {
+        object-position: center 55% !important;
+      }
+
+      /* Tumpeng1 - geser ke bawah, ubah angka 70% lebih besar = lebih bawah */
+      .tumpeng-grid .tumpeng-card:nth-child(1) .tumpeng-img-wrap img {
+        object-position: center 42% !important;
+      }
+
+      /* Tumpeng2 - geser ke bawah, ubah angka 70% lebih besar = lebih bawah */
+      .tumpeng-grid .tumpeng-card:nth-child(2) .tumpeng-img-wrap img {
+        object-position: center 45% !important;
+      }
+
+      /* Tumpeng3 - zoom in ke kanan, ubah 150% lebih besar = lebih zoom */
+      .tumpeng-grid .tumpeng-card:nth-child(3) .tumpeng-img-wrap img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: right top !important;
+        transform: scale(2) translate(50%, -16%) !important;
+        transform-origin: right top !important;
+      }
+
+      /* Naskun3 - object-position saja tanpa scale agar tetap fit border
+        ubah angka center X% : X lebih kecil = lebih atas, lebih besar = lebih bawah */
+      .owner-grid .owner-card:nth-child(1) .owner-img-wrap img {
+        object-position: center 55% !important;
+      }
+
+      /* Naskun4 - geser ke bawah, ubah angka 70% lebih besar = lebih bawah */
+      .owner-grid .owner-card:nth-child(2) .owner-img-wrap img {
+        object-position: center 45% !important;
+      }
+
+      /* Naskun5 - geser ke bawah, ubah angka 70% lebih besar = lebih bawah */
+      .owner-grid .owner-card:nth-child(3) .owner-img-wrap img {
+        object-position: center 57% !important;
+      }
     }
   </style>
 </head>
+
 <body>
-
-<!-- NAV -->
-<nav id="navbar">
-  <div class="nav-logo">AzMaza<span>Hijab</span></div>
-  <a href="#cta" class="nav-cta">Beli Sekarang</a>
-</nav>
-
-<!-- ═══ HERO ═══ -->
-<section id="hero">
-  <div class="hero-bg-shape"></div>
-  <div class="hero-left">
-    <div class="hero-badge">✨ Koleksi Ramadan Special 2026</div>
-    <h1 class="hero-headline">
-      Tampil <em>Anggun</em> &amp;<br>Syar'i Setiap Hari
-    </h1>
-    <p class="hero-sub">
-      Hijab premium berbahan Ceruti Silk yang lembut, tidak mudah kusut, dan nyaman dipakai seharian. Tampil percaya diri dari pagi hingga malam.
-    </p>
-    <div class="hero-actions">
-      <a href="#cta" class="btn-primary">🛍️ Order Sekarang</a>
-      <a href="#benefits" class="btn-secondary">Lihat Detail</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">12K+</div>
-        <div class="stat-label">Pembeli Puas</div>
-      </div>
-      <div>
-        <div class="stat-num">4.9★</div>
-        <div class="stat-label">Rating</div>
-      </div>
-      <div>
-        <div class="stat-num">30+</div>
-        <div class="stat-label">Warna Pilihan</div>
-      </div>
-    </div>
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;width:0%;height:3px;
+     background:linear-gradient(90deg,#D4A017,#F0C842);z-index:9999;
+     transition:width 0.1s linear;"></div>
+  <div class="top-bar">
+    Buka setiap hari &nbsp;<strong>06.30 - 09.30 WIB</strong>&nbsp; (Selagi Masih Ada Stok) &nbsp;|&nbsp; Antar ke rumah & Tumpeng tersedia!
   </div>
-  <div class="hero-right">
-    <div class="hero-img-wrap">
-      <!-- GANTI SRC DENGAN FOTO PRODUK UTAMA (rasio 3:4 terbaik) -->
-      <img src="https://i.pinimg.com/736x/cb/ab/97/cbab970c3f59bae0224fe0ba72d8a273.jpg" alt="Model Wanita Berhijab Elegan">
-      <div class="hero-float-badge">
-        <div class="icon">🌟</div>
-        <div class="label">Best Seller</div>
-        <div class="value">#1 Choice</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ OPENING ═══ -->
-<section id="opening">
-  <div class="section-tag">Kamu Pernah Merasakan Ini?</div>
-  <h2 class="section-title" style="color:#fff">Lelah dengan Hijab yang <em style="color:var(--gold)">Bikin Ribet?</em></h2>
-  <p class="section-desc" style="margin:0 auto">Banyak perempuan menghadapi masalah yang sama setiap harinya…</p>
-  <div class="problem-grid">
-    <div class="problem-card reveal">
-      <div class="icon">😓</div>
-      <h3>Mudah Kusut & Lecek</h3>
-      <p>Baru dipakai sejam sudah terlihat berantakan, harus bolak-balik dirapikan.</p>
+  <nav aria-label="Navigasi Utama">
+    <div class="container nav-inner">
+      <div class="nav-brand">Nasi Kuning <span class="superman-text">Sabil</span></div>
+      <ul class="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#layanan">Layanan</a></li>
+        <li><a href="#testimoni">Testimoni</a></li>
+        <li><a href="#lokasi">Lokasi</a></li>
+      </ul>
+      <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20ingin%20pesan%20Nasi%20Kuning!"
+         class="nav-cta" target="_blank" rel="noopener">
+        Pesan Sekarang
+      </a>
     </div>
-    <div class="problem-card reveal">
-      <div class="icon">🥵</div>
-      <h3>Gerah & Tidak Nyaman</h3>
-      <p>Bahan yang panas membuat tidak fokus bekerja dan tidak percaya diri.</p>
-    </div>
-    <div class="problem-card reveal">
-      <div class="icon">💸</div>
-      <h3>Harga Mahal Tapi Kualitas Biasa</h3>
-      <p>Sudah keluar banyak uang, tapi hasilnya mengecewakan dalam beberapa minggu.</p>
-    </div>
-    <div class="problem-card reveal">
-      <div class="icon">😬</div>
-      <h3>Susah Dipadukan</h3>
-      <p>Warna yang terbatas membuat outfit terasa itu-itu saja setiap hari.</p>
-    </div>
-  </div>
-</section>
+  </nav>
 
-<!-- ═══ BENEFITS ═══ -->
-<section id="benefits">
-  <div class="benefits-layout">
-    <div class="benefit-img-wrap reveal">
-      <!-- GANTI SRC DENGAN FOTO CLOSE-UP TEKSTUR / DETAIL HIJAB -->
-      <img src="https://i.pinimg.com/1200x/ad/b4/62/adb4629860877d48e0216030eb63294b.jpg" alt="Model Wanita Berhijab Elegan">
-      <div class="benefit-tag-img">PREMIUM<br>QUALITY</div>
-    </div>
-    <div>
-      <div class="section-tag">Keunggulan Produk</div>
-      <h2 class="section-title">Kenapa <em>AzMaza Hijab</em><br>Beda dari yang Lain?</h2>
-      <div class="benefit-list">
-        <div class="benefit-item reveal">
-          <div class="benefit-icon">🌸</div>
-          <div class="benefit-text">
-            <h4>Bahan Ceruti Silk Premium</h4>
-            <p>Lembut di kulit, tidak mudah kusut, dan tetap terlihat rapi seharian penuh.</p>
-          </div>
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="container" style="display:contents">
+      <div class="hero-text container" style="padding-right:0">
+        <div class="hero-badge fade-up">Kuliner Tradisional Tasikmalaya</div>
+        <h1 class="hero-headline fade-up delay-1">
+          Kehangatan Rempah
+          <span class="highlight">dalam Setiap Suapan</span>
+        </h1>
+        <p class="hero-sub fade-up delay-2">
+          Nasi Kuning yang dimasak dengan paduan kunyit segar, santan pilihan, dan rempah
+          rahasia turun-temurun — menghadirkan cita rasa pagi yang tak terlupakan.
+          Tersedia antar ke rumah &amp; tumpeng untuk acara spesial.
+        </p>
+        <div class="hero-hours fade-up delay-3">
+          <div class="hero-hours-icon"></div>
+          <span>Buka <strong>06.30 - 09.30 WIB</strong> &mdash; Jika belum habis</span>
         </div>
-        <div class="benefit-item reveal">
-          <div class="benefit-icon">💨</div>
-          <div class="benefit-text">
-            <h4>Anti Gerah & Breathable</h4>
-            <p>Sirkulasi udara optimal sehingga nyaman dipakai di cuaca panas sekalipun.</p>
-          </div>
-        </div>
-        <div class="benefit-item reveal">
-          <div class="benefit-icon">🎨</div>
-          <div class="benefit-text">
-            <h4>30+ Pilihan Warna Tren</h4>
-            <p>Koleksi warna terkini yang mudah dipadukan dengan berbagai outfit casual maupun formal.</p>
-          </div>
-        </div>
-        <div class="benefit-item reveal">
-          <div class="benefit-icon">✨</div>
-          <div class="benefit-text">
-            <h4>Anti Melar & Tahan Lama</h4>
-            <p>Dijahit dengan teknik khusus agar bentuk tetap sempurna meski dicuci berkali-kali.</p>
-          </div>
-        </div>
-        <div class="benefit-item reveal">
-          <div class="benefit-icon">📏</div>
-          <div class="benefit-text">
-            <h4>Ukuran Oversize Syar'i</h4>
-            <p>Panjang 200×75cm, menutupi dada dengan sempurna tanpa perlu tambahan ciput.</p>
-          </div>
+        <div class="hero-ctas fade-up delay-4">
+          <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20ingin%20pesan%20Nasi%20Kuning!"
+             class="btn btn-primary" target="_blank" rel="noopener">
+            Pesan via WhatsApp
+          </a>
+          <a href="#menu" class="btn btn-secondary">Lihat Menu</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ WHY ═══ -->
-<section id="why">
-  <div class="section-tag">Alasan Memilih Kami</div>
-  <h2 class="section-title">Mengapa <em>12.000+ Wanita</em><br>Mempercayai Kami?</h2>
-  <div class="why-grid">
-    <div class="why-card reveal">
-      <div class="num">01</div>
-      <h3>Bahan Tersertifikasi</h3>
-      <p>Setiap bahan telah melalui uji laboratorium untuk keamanan kulit sensitif.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="num">02</div>
-      <h3>Pengiriman Cepat</h3>
-      <p>Ready stock, dikirim dalam 1×24 jam ke seluruh Indonesia via ekspedisi terpercaya.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="num">03</div>
-      <h3>Layanan 24/7</h3>
-      <p>Tim CS kami siap membantu kapan pun via WhatsApp, cepat dan ramah.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="num">04</div>
-      <h3>Ribuan Ulasan Positif</h3>
-      <p>Rating 4.9/5 dari belasan ribu pembeli nyata—bukan akun bot.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="num">05</div>
-      <h3>Garansi Penuh</h3>
-      <p>Tidak puas? Kami kembalikan uangmu 100% tanpa pertanyaan berlebihan.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="num">06</div>
-      <h3>UMKM Lokal Bangga</h3>
-      <p>Produk asli buatan anak bangsa, mendukung pengrajin lokal Indonesia.</p>
-    </div>
-  </div>
-</section>
+      <div class="hero-visual">
+        <!-- Blobs lama -->
+        <div class="blob-orange" aria-hidden="true"></div>
+        <div class="blob-green"  aria-hidden="true"></div>
+        <div class="blob-yellow" aria-hidden="true"></div>
 
-<!-- ═══ TESTIMONI ═══ -->
-<section id="testi">
-  <div class="testi-header">
-    <div>
-      <div class="section-tag">Testimoni Nyata</div>
-      <h2 class="section-title">Apa Kata <em>Mereka?</em></h2>
-    </div>
-    <div class="testi-controls">
-      <button class="testi-btn" id="prev">&#8592;</button>
-      <button class="testi-btn" id="next">&#8594;</button>
-    </div>
-  </div>
-  <div class="testi-slider">
-    <div class="testi-track" id="track">
+        <!-- Cincin dekoratif berputar -->
+        <div aria-hidden="true" style="position:absolute;width:400px;height:400px;border-radius:50%;
+            border:2px dashed rgba(212,160,23,0.35);animation:spinSlow 18s linear infinite;z-index:0;"></div>
+        <div aria-hidden="true" style="position:absolute;width:460px;height:460px;border-radius:50%;
+            border:1px dashed rgba(212,160,23,0.18);animation:spinSlow 28s linear infinite reverse;z-index:0;"></div>
 
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Udah coba banyak merek hijab, tapi AzMaza beda banget! Bahannya adem padahal seharian di luar. Warnanya juga cakep banget, langsung beli 3 sekalian."</p>
-        <div class="testi-user">
-          <div class="testi-avatar">SA</div>
+        <!-- Partikel rempah mengambang -->
+        <div aria-hidden="true" class="spice-dot" style="width:10px;height:10px;top:12%;left:18%;animation-delay:0s;"></div>
+        <div aria-hidden="true" class="spice-dot" style="width:7px;height:7px;top:70%;left:12%;animation-delay:1.2s;"></div>
+        <div aria-hidden="true" class="spice-dot" style="width:12px;height:12px;top:20%;right:14%;animation-delay:0.6s;"></div>
+        <div aria-hidden="true" class="spice-dot" style="width:6px;height:6px;top:80%;right:20%;animation-delay:1.8s;"></div>
+        <div aria-hidden="true" class="spice-dot" style="width:9px;height:9px;top:50%;left:6%;animation-delay:2.4s;"></div>
+        <div aria-hidden="true" class="spice-dot spice-dot--green" style="width:8px;height:8px;top:35%;right:8%;animation-delay:0.9s;"></div>
+        <div aria-hidden="true" class="spice-dot spice-dot--green" style="width:11px;height:11px;top:65%;left:22%;animation-delay:1.5s;"></div>
+
+        <!-- Badge rating mengambang -->
+        <div aria-hidden="true" style="position:absolute;top:10%;left:2%;z-index:3;
+            background:white;border-radius:14px;padding:8px 14px;
+            box-shadow:0 4px 18px rgba(0,0,0,0.12);
+            animation:floatBadge 5s ease-in-out infinite;display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1.1rem;">⭐</span>
           <div>
-            <div class="testi-name">Siti Aulia</div>
-            <div class="testi-loc">⭐ Jakarta – Pembeli Verified</div>
+            <div style="font-family:var(--font-serif);font-size:0.85rem;font-weight:700;color:var(--charcoal);line-height:1.2;">4.9 / 5.0</div>
+            <div style="font-size:0.65rem;color:#888;letter-spacing:0.05em;">Rating Pelanggan</div>
           </div>
         </div>
-      </div>
 
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Pertama lihat harganya agak ragu, tapi ternyata worth it banget! Udah 6 bulan dipakai masih bagus, nggak melar, nggak kusut. Highly recommended!"</p>
-        <div class="testi-user">
-          <div class="testi-avatar">RN</div>
+        <!-- Badge "Habis cepat" mengambang -->
+        <div aria-hidden="true" style="position:absolute;bottom:18%;right:2%;z-index:3;
+            background:var(--charcoal);border-radius:14px;padding:8px 14px;
+            box-shadow:0 4px 18px rgba(0,0,0,0.18);
+            animation:floatBadge 6s ease-in-out 1s infinite;display:flex;align-items:center;gap:8px;">
+          <span style="font-size:1rem;">🔥</span>
           <div>
-            <div class="testi-name">Rahma Nur</div>
-            <div class="testi-loc">⭐ Surabaya – Pembeli Verified</div>
+            <div style="font-size:0.82rem;font-weight:600;color:var(--turmeric-light);line-height:1.2;">Sering Habis</div>
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.55);">Sebelum jam 08.30</div>
+          </div>
+        </div>
+
+        <div class="hero-plate-wrap fade-up delay-2">
+          <div class="hero-plate-shadow" aria-hidden="true"></div>
+          <img id="hero-plate"
+            src="Naskun1.jpeg"
+            alt="Piring Nasi Kuning Sabil"
+            onload="this.style.display='block';this.nextElementSibling.style.display='none';"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+            style="display:none;width:320px;height:320px;object-fit:cover;border-radius:50%;box-shadow:0 20px 60px rgba(0,0,0,0.22), 0 0 0 8px rgba(255,255,255,0.6);" />
+          <div class="plate-placeholder" id="hero-placeholder">
+            <div class="plate-placeholder-text">
+              Nasi Kuning<br>
+              <span class="plate-placeholder-sub">[ Tempatkan foto piring di sini ]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPENING -->
+  <section class="opening" aria-label="Filosofi">
+    <div class="container">
+      <blockquote>
+        Setiap binar kuningnya menyimpan rahasia tanah yang dipeluk matahari dan dekapan kunyit yang bersahaja &mdash; 
+        sebuah kisah yang menanti untuk diceritakan di meja makan Anda.
+      </blockquote>
+
+      <p>
+        Kami hadir setiap pagi untuk meracik bukan sekadar pengganjal lapar, melainkan sepiring rindu
+        yang membawa langkah Anda pulang ke hangatnya kenangan rumah, tepat saat fajar mulai berbisik.
+      </p>
+    </div>
+  </section>
+
+  <!-- BENEFIT -->
+  <section class="benefit" id="benefit" aria-label="Keunggulan">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Mengapa Pilih Kami</span>
+        <h2 class="section-title">Bukan Sekadar <span>Nasi Biasa</span></h2>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--turmeric-dark)" stroke-width="2">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+              <path d="M8 12l2.5 2.5L16 9"/>
+            </svg>
+          </div>
+          <h3>Rempah Segar Pilihan</h3>
+          <p>Kunyit, serai, dan daun salam dipilih segar setiap harinya untuk menjaga aroma dan cita rasa terbaik.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--turmeric-dark)" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+          </div>
+          <h3>Resep Turun-Temurun</h3>
+          <p>Warisan kuliner keluarga yang telah dijaga keasliannya selama lebih dari dua generasi.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--turmeric-dark)" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Tanpa Bahan Pengawet</h3>
+          <p>Dimasak segar setiap pagi tanpa tambahan bahan kimia atau pengawet apapun. Halal dan aman.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--turmeric-dark)" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12,6 12,12 16,14"/>
+            </svg>
+          </div>
+          <h3>Pagi yang Tidak Melewati Batas</h3>
+          <p>Terbatas setiap harinya &mdash; datang lebih awal, nikmati yang terbaik. Porsi habis dalam hitungan jam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       KATALOG — 1 VARIAN + LAYANAN ANTAR & TUMPENG
+       ============================================================ -->
+  <section class="katalog" id="menu" aria-label="Menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Menu Kami</span>
+        <h2 class="section-title">Nasi Kuning <span class="superman-text">Sabil</span></h2>
+        <p style="color:var(--charcoal-soft);font-size:0.95rem;margin-top:0.75rem;max-width:500px;margin-inline:auto;">
+          Satu varian, satu keistimewaan — dibuat dengan sepenuh hati setiap pagi.
+          Anda bebas memilih lauk sesuai selera!
+        </p>
+      </div>
+
+      <!-- Kartu Menu Tunggal -->
+      <div class="menu-single-wrap">
+        <div class="menu-card-single">
+          <div class="menu-img-wrap">
+            <!--
+              Ganti src="" dengan path foto menu Anda.
+              Contoh: src="nasi-kuning.jpg"
+            -->
+            <img src="Naskun2.jpeg" alt="Nasi Kuning Sabil"
+                onload="this.style.display='block';this.nextElementSibling.style.display='none';this.nextElementSibling.nextElementSibling.style.display='flex';"
+                onerror="this.style.display='none';"
+                style="width:100%;height:auto;margin-top: -80px;" />
+            <div class="menu-img-placeholder" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;">
+              🍚 Nasi Kuning Sabil
+              <span style="font-size:0.8rem;opacity:0.75;margin-top:4px;">[ Foto Menu ]</span>
+            </div>
+            <span class="menu-badge">⭐ Andalan Kami</span>
+          </div>
+          <div class="menu-body-single">
+            <h3>Nasi Kuning Sabil</h3>
+            <p>
+              Nasi kuning hangat dimasak dengan kunyit segar, santan kelapa pilihan, serai, dan daun salam —
+              disajikan dengan nasi yang pulen dan wangi rempah yang khas. Pilih lauk favorit Anda!
+            </p>
+            <div class="menu-price-wrap">
+              <div class="menu-price">Rp 10.000</div>
+              <span class="menu-price-note">/ porsi (lauk bisa pilih)</span>
+            </div>
+
+            <!-- Pilihan Lauk -->
+            <div class="lauk-list">
+              <div class="lauk-list-title">Pilihan Lauk Tersedia</div>
+              <div class="lauk-tags">
+                <span class="lauk-tag">Telur</span>
+                <span class="lauk-tag">Mustofa</span>
+                <span class="lauk-tag">Tempe Orek Kering</span>
+                <span class="lauk-tag">Bihun Kecap</span>
+                <span class="lauk-tag">Sambal</span>
+              </div>
+            </div>
+
+            <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20mau%20pesan%20Nasi%20Kuning%20pilih%20lauk..."
+               class="btn btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+              Pesan Sekarang via WhatsApp
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Pengiriman super cepat! Pesan malam, besok udah sampai. Kualitasnya jauh di atas ekspektasi. Suami sampai bilang 'cantik banget pakai hijab baru'. 😊"</p>
-        <div class="testi-user">
-          <div class="testi-avatar">FM</div>
-          <div>
-            <div class="testi-name">Fitri Maharani</div>
-            <div class="testi-loc">⭐ Bandung – Pembeli Verified</div>
+      <!-- Layanan Antar & Tumpeng -->
+      <div class="section-header" id="layanan" style="margin-top:1rem;margin-bottom:2rem;">
+        <span class="section-label">Layanan Kami</span>
+        <h2 class="section-title">Lebih dari <span>Sekadar Beli di Tempat</span></h2>
+      </div>
+      <div class="layanan-grid">
+
+        <!-- Layanan Antar -->
+        <div class="layanan-card">
+          <div class="layanan-icon">🛵</div>
+          <h3>Antar ke Rumah</h3>
+          <p>
+            Tidak sempat datang pagi-pagi? Tenang, kami bisa antarkan langsung ke pintu rumah Anda
+            di area sekitar Jl. Sukasari, Tasikmalaya. Tanpa minimal pemesanan!
+          </p>
+          <ul class="layanan-highlights">
+            <li>Tidak ada minimal pemesanan — 1 porsi pun kami antar</li>
+            <li>Pesan via WhatsApp sebelum jam 06.00 WIB</li>
+            <li>Konfirmasi alamat dan nomor telepon saat memesan</li>
+            <li>Ongkir menyesuaikan jarak (dikonfirmasi via WA)</li>
+            <li>Nasi tetap hangat dalam kemasan yang terjaga</li>
+          </ul>
+          <div class="layanan-cta-note">
+            📱 Hubungi kami via WhatsApp untuk info ongkir ke area Anda
+          </div>
+          <br>
+          <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20mau%20pesan%20antar%20Nasi%20Kuning%20ke%20rumah.%20Alamat%20saya..."
+             class="btn btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Pesan Antar Sekarang
+          </a>
+        </div>
+
+        <!-- Layanan Tumpeng -->
+        <div class="layanan-card">
+          <div class="layanan-icon">🎉</div>
+          <h3>Tumpeng Nasi Kuning</h3>
+          <p>
+            Rayakan momen spesial Anda dengan tumpeng nasi kuning yang cantik dan lezat —
+            cocok untuk syukuran, ulang tahun, acara kantor, maupun hajatan keluarga.
+          </p>
+          <ul class="layanan-highlights">
+            <li>Tersedia berbagai ukuran sesuai kebutuhan acara</li>
+            <li>Dilengkapi lauk pilihan: ayam ingkung, telur, urap, tempe, dll.</li>
+            <li>Tampilan cantik dan rapi, siap sajikan langsung</li>
+            <li>Pemesanan minimal H-1 (sehari sebelumnya)</li>
+            <li>Harga mulai dari yang terjangkau — hubungi untuk penawaran</li>
+          </ul>
+          <div class="layanan-cta-note">
+            🎊 Pesan minimal sehari sebelum acara untuk hasil terbaik
+          </div>
+          <br>
+          <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20tertarik%20memesan%20tumpeng%20nasi%20kuning%20untuk%20acara..."
+             class="btn btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Tanya Harga Tumpeng
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CARA PESAN -->
+  <section style="background:var(--white);padding:80px 0;" aria-label="Cara Memesan">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Mudah & Cepat</span>
+        <h2 class="section-title">Cara <span>Memesan</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;counter-reset:steps;">
+        <div class="benefit-card" style="counter-increment:steps;position:relative;padding-top:3rem;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+              width:40px;height:40px;border-radius:50%;background:var(--turmeric);
+              color:#fff;display:flex;align-items:center;justify-content:center;
+              font-family:var(--font-serif);font-size:1.2rem;font-weight:700;">1</div>
+          <h3>Hubungi via WA</h3>
+          <p>Kirim pesan ke nomor kami di WhatsApp. Bisa sebelum jam 06.00 untuk prioritas antar.</p>
+        </div>
+        <div class="benefit-card" style="counter-increment:steps;position:relative;padding-top:3rem;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+              width:40px;height:40px;border-radius:50%;background:var(--turmeric);
+              color:#fff;display:flex;align-items:center;justify-content:center;
+              font-family:var(--font-serif);font-size:1.2rem;font-weight:700;">2</div>
+          <h3>Pilih Lauk</h3>
+          <p>Beritahu lauk yang diinginkan: telur, mustofa, tempe orek, bihun kecap, atau sambal.</p>
+        </div>
+        <div class="benefit-card" style="counter-increment:steps;position:relative;padding-top:3rem;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+              width:40px;height:40px;border-radius:50%;background:var(--turmeric);
+              color:#fff;display:flex;align-items:center;justify-content:center;
+              font-family:var(--font-serif);font-size:1.2rem;font-weight:700;">3</div>
+          <h3>Konfirmasi Pesanan</h3>
+          <p>Kami konfirmasi stok dan detail pesanan Anda. Untuk antar, sertakan alamat lengkap.</p>
+        </div>
+        <div class="benefit-card" style="counter-increment:steps;position:relative;padding-top:3rem;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+              width:40px;height:40px;border-radius:50%;background:var(--turmeric);
+              color:#fff;display:flex;align-items:center;justify-content:center;
+              font-family:var(--font-serif);font-size:1.2rem;font-weight:700;">4</div>
+          <h3>Nikmati!</h3>
+          <p>Ambil langsung di Jl. Sukasari atau tunggu di rumah — nasi hangat siap dinikmati.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- TESTIMONI -->
+  <section class="testimoni" id="testimoni" aria-label="Testimoni Pelanggan">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Kata Pelanggan</span>
+        <h2 class="section-title">Mereka yang <span>Sudah Merasakan</span></h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <div class="star"></div><div class="star"></div><div class="star"></div>
+            <div class="star"></div><div class="star"></div>
+          </div>
+          <p class="testi-text">
+            Sudah setia langganan sejak tahun lalu. Rasanya konsisten dan selalu bikin semangat
+            mulai aktivitas pagi. Aroma rempahnya sungguh menggugah selera.
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">SR</div>
+            <div>
+              <div class="testi-name">Siti Rahayu</div>
+              <div class="testi-location">Kelurahan Lengkongsari</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <div class="star"></div><div class="star"></div><div class="star"></div>
+            <div class="star"></div><div class="star"></div>
+          </div>
+          <p class="testi-text">
+            Nasi kuningnya pulen, lauknya tidak pelit. Harganya sangat terjangkau
+            untuk kualitas yang diberikan. Pesan antar pun gampang lewat WhatsApp!
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">BW</div>
+            <div>
+              <div class="testi-name">Budi Wirawan</div>
+              <div class="testi-location">Kecamatan Tawang</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <div class="star"></div><div class="star"></div><div class="star"></div>
+            <div class="star"></div><div class="star"></div>
+          </div>
+          <p class="testi-text">
+            Sering beli untuk sarapan keluarga dan sudah pernah pesan tumpeng untuk
+            syukuran. Presentasinya rapi, rasanya otentik. Penjualnya ramah dan terpercaya!
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">NA</div>
+            <div>
+              <div class="testi-name">Nur Azizah</div>
+              <div class="testi-location">Kota Tasikmalaya</div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Hijab ini beneran awet! Sudah dicuci berkali-kali tetap bagus. CS-nya juga responsif banget, ramah, dan helpful. Bakal repeat order terus!"</p>
-        <div class="testi-user">
-          <div class="testi-avatar">DW</div>
-          <div>
-            <div class="testi-name">Dewi Wulandari</div>
-            <div class="testi-loc">⭐ Medan – Pembeli Verified</div>
+  <!-- TUMPENG GALLERY -->
+  <section class="tumpeng-gallery" aria-label="Galeri Tumpeng">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Tumpeng Kami</span>
+        <h2 class="section-title">Tampilan <span>Tumpeng Spesial</span></h2>
+      </div>
+      <div class="tumpeng-grid">
+        <!-- Foto Tumpeng 1 -->
+        <div class="tumpeng-card">
+          <div class="tumpeng-img-wrap">
+            <!-- Ganti src dengan gambar tumpeng Anda -->
+            <img src="Tumpeng1.jpeg" alt="Tumpeng Nasi Kuning" onload="this.style.display='block';this.nextElementSibling.style.display='none';this.nextElementSibling.nextElementSibling.style.display='flex';"
+                onerror="this.style.display='none';"
+                style="width:100%;height:auto;margin-top: -220px;"/>
+            <div class="tumpeng-placeholder">
+              <div class="tumpeng-placeholder-text">Tumpeng 1</div>
+              <span class="plate-placeholder-sub">[ Foto Tumpeng ]</span>
+            </div>
+          </div>
+        </div>
+        <!-- Foto Tumpeng 2 -->
+        <div class="tumpeng-card">
+          <div class="tumpeng-img-wrap">
+            <img src="Tumpeng3.jpeg" alt="Tumpeng Nasi Kuning" onload="this.style.display='block';this.nextElementSibling.style.display='none';this.nextElementSibling.nextElementSibling.style.display='flex';"
+                onerror="this.style.display='none';"
+                style="width:100%;height:auto;margin-top: -220px;"/>
+            <div class="tumpeng-placeholder">
+              <div class="tumpeng-placeholder-text">Tumpeng 2</div>
+              <span class="plate-placeholder-sub">[ Foto Tumpeng ]</span>
+            </div>
+          </div>
+        </div>
+        <!-- Foto Tumpeng 3 -->
+        <div class="tumpeng-card">
+          <div class="tumpeng-img-wrap">
+            <img src="Tumpeng2.jpeg" alt="Tumpeng Nasi Kuning" 
+                onload="this.style.display='block';this.nextElementSibling.style.display='none';this.nextElementSibling.nextElementSibling.style.display='flex';"
+                onerror="this.style.display='none';"
+                style="width:100%;height:100%;object-fit:cover;object-position:22% center;" />
+            <div class="tumpeng-placeholder">
+              <div class="tumpeng-placeholder-text">Tumpeng 3</div>
+              <span class="plate-placeholder-sub">[ Foto Tumpeng ]</span>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Aku yang terbiasa pakai hijab biasa, pertama nyoba AzMaza langsung berasa perbedaannya. Ringan, nggak gerah, jatuhnya cantik. Nggak mau balik ke yang lain."</p>
-        <div class="testi-user">
-          <div class="testi-avatar">IN</div>
-          <div>
-            <div class="testi-name">Indah Novianti</div>
-            <div class="testi-loc">⭐ Yogyakarta – Pembeli Verified</div>
+  <!-- URGENSI -->
+  <section class="urgensi" aria-label="Pesan Sebelum Habis">
+    <div class="container">
+      <h2>Stok Terbatas &mdash; <span>Pesan Sekarang</span></h2>
+      <p class="urgensi-sub">
+        Tersedia mulai pukul 06.30 WIB. Rata-rata habis sebelum pukul 08.30.
+        Jangan sampai kehabisan.
+      </p>
+      <div class="timer-wrap" aria-label="Hitung mundur waktu buka">
+        <div class="timer-box">
+          <span class="timer-digit" id="t-hours">00</span>
+          <span class="timer-label">Jam</span>
+        </div>
+        <div class="timer-sep" aria-hidden="true">:</div>
+        <div class="timer-box">
+          <span class="timer-digit" id="t-minutes">00</span>
+          <span class="timer-label">Menit</span>
+        </div>
+        <div class="timer-sep" aria-hidden="true">:</div>
+        <div class="timer-box">
+          <span class="timer-digit" id="t-seconds">00</span>
+          <span class="timer-label">Detik</span>
+        </div>
+      </div>
+      <p id="timer-msg" style="color:rgba(255,255,255,0.7);font-size:0.88rem;margin-bottom:2rem;"></p>
+      <div class="stock-bar-wrap">
+        <div class="stock-bar-label">
+          <span>Stok Hari Ini</span>
+          <span>72% Terjual</span>
+        </div>
+        <div class="stock-bar">
+          <div class="stock-bar-fill"></div>
+        </div>
+      </div>
+      <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20ingin%20reservasi%20Nasi%20Kuning!"
+         class="btn btn-primary" target="_blank" rel="noopener">
+        Amankan Porsi Saya
+      </a>
+    </div>
+  </section>
+
+  <!-- BONUS -->
+  <section class="bonus" aria-label="Bonus Pembelian">
+    <div class="container">
+      <div class="bonus-card">
+        <span class="bonus-tag">Bonus Spesial</span>
+        <h2>Pesan Hari Ini, Dapatkan <span>Keistimewaan Lebih</span></h2>
+        <ul class="bonus-list">
+          <li>
+            <div class="bonus-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <span>Minuman teh hangat <strong>gratis</strong> untuk setiap pembelian di atas Rp 20.000</span>
+          </li>
+          <li>
+            <div class="bonus-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <span>Lauk tambahan <strong>sambal terasi</strong> ekstra tanpa biaya tambahan</span>
+          </li>
+          <li>
+            <div class="bonus-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <span>Diskon <strong>10%</strong> untuk pembelian 5 porsi atau lebih (cocok untuk sarapan kantor)</span>
+          </li>
+          <li>
+            <div class="bonus-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <span>Prioritas antrian bagi yang <strong>memesan via WhatsApp</strong> sebelum jam 06.00</span>
+          </li>
+        </ul>
+        <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20ingin%20pesan%20dan%20klaim%20bonus!"
+           class="btn btn-primary" target="_blank" rel="noopener">
+          Klaim Bonus Sekarang
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-label="Pesan Sekarang">
+    <div class="container">
+      <h2>Siap Menikmati <span>Sarapan Terbaik?</span></h2>
+      <p>
+        Satu pesan WhatsApp, dan hidangan hangat penuh rempah sudah menunggu
+        Anda pagi hari. Bisa makan di tempat, antar ke rumah, atau pesan tumpeng!
+      </p>
+      <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20ingin%20pesan%20Nasi%20Kuning!%20Mohon%20info%20menu%20dan%20harga%20terkini."
+         class="btn btn-wa" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Pesan via WhatsApp Sekarang
+      </a>
+    </div>
+  </section>
+
+  <!-- LOKASI -->
+  <section class="lokasi" id="lokasi" aria-label="Lokasi Kami">
+    <div class="container">
+      <div class="lokasi-inner">
+        <div class="lokasi-info">
+          <h2>Temukan Kami di <span>Jl. Sukasari</span></h2>
+          <div class="lokasi-detail">
+            <div class="lokasi-row">
+              <svg class="lokasi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>
+                Jl. Sukasari (Depan Minimarket Sukasari),<br>
+                Kelurahan Lengkongsari, Kecamatan Tawang,<br>
+                <strong>Kota Tasikmalaya</strong>
+              </span>
+            </div>
+            <div class="lokasi-row">
+              <svg class="lokasi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              <span>Buka <strong>06.30 - 09.30 WIB</strong> (Jika belum habis)</span>
+            </div>
+            <div class="lokasi-row">
+              <svg class="lokasi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              <span>Hubungi via WhatsApp: <strong>0812-3456-78</strong></span>
+            </div>
+          </div>
+          <!-- ============================================================
+               TOMBOL GOOGLE MAPS — Ganti koordinat/nama lokasi di URL
+               Contoh pencarian nama: maps.google.com/?q=Nasi+Kuning+Sabil+Tasikmalaya
+               Contoh koordinat:     maps.google.com/?q=-7.327,108.218
+               ============================================================ -->
+          <a href="https://www.google.com/maps/dir/?api=1&destination=-7.327222,108.231389&travelmode=driving"
+             class="btn btn-maps" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Cari di Google Maps
+          </a>
+        </div>
+
+        <div class="map-placeholder" aria-label="Peta Lokasi">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+               stroke="#1a73e8" stroke-width="1.5" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span class="map-placeholder-text">
+            Jl. Sukasari, Tasikmalaya<br>
+            <small>Depan Minimarket Sukasari</small>
+          </span>
+          <!-- ============================================================
+               Ganti URL di bawah dengan koordinat GPS yang tepat:
+               https://www.google.com/maps?q=-7.3xxxx,108.2xxxx
+               atau cukup nama lokasi:
+               https://www.google.com/maps/search/nama+toko+alamat
+               ============================================================ -->
+          <a href="https://www.google.com/maps/dir/?api=1&destination=-7.327222,108.231389&travelmode=driving"
+             class="btn btn-maps" target="_blank" rel="noopener" style="margin-top:8px">
+            Buka di Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OWNER GALLERY -->
+  <section class="owner-gallery" aria-label="Suasan Dagang">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Suasan Kami</span>
+        <h2 class="section-title">Kami Siap <span>Melayani Anda</span></h2>
+      </div>
+      <div class="owner-grid">
+        <!-- Foto Owner/Dagang 1 -->
+        <div class="owner-card">
+          <div class="owner-img-wrap">
+            <!-- Ganti src dengan gambar owner/melayani pelanggan -->
+            <img src="Naskun3.jpeg" alt="Owner Melayani Pelanggan"onload="this.style.display='block';this.nextElementSibling.style.display='none';this.nextElementSibling.nextElementSibling.style.display='flex';"
+                onerror="this.style.display='none';" 
+                style="width:100%;height:auto;margin-top: -300px"/>
+            <div class="owner-placeholder">
+              <div class="owner-placeholder-text">Melayani Pelanggan</div>
+              <span class="plate-placeholder-sub">[ Foto Suasan ]</span>
+            </div>
+          </div>
+        </div>
+        <!-- Foto Owner/Dagang 2 -->
+        <div class="owner-card">
+          <div class="owner-img-wrap">
+            <img src="Naskun4.jpeg" alt="Owner Melayani Pelanggan"onload="this.style.display='block';this.nextElementSibling.style.display='none';this.nextElementSibling.nextElementSibling.style.display='flex';"
+                onerror="this.style.display='none';" 
+                style="width:100%;height:auto;margin-top: -220px"/>
+            <div class="owner-placeholder">
+              <div class="owner-placeholder-text">Kondisi Dagangan</div>
+              <span class="plate-placeholder-sub">[ Foto Suasan ]</span>
+            </div>
+          </div>
+        </div>
+        <!-- Foto Owner/Dagang 3 -->
+        <div class="owner-card">
+          <div class="owner-img-wrap">
+            <img src="Naskun5.jpeg" alt="Owner Melayani Pelanggan"
+                onload="this.style.display='block';this.nextElementSibling.style.display='none';this.nextElementSibling.nextElementSibling.style.display='flex';"
+                onerror="this.style.display='none';" 
+                style="width:100%;height:100%;object-fit:cover;object-position:center 60%;transform:scale(1.3);transform-origin:center top;" />
+            <div class="owner-placeholder">
+              <div class="owner-placeholder-text">Owner</div>
+              <span class="plate-placeholder-sub">[ Foto Suasan ]</span>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ URGENCY ═══ -->
-<section id="urgency">
-  <div class="section-tag">⚡ Penawaran Terbatas</div>
-  <h2 class="section-title">Promo Berakhir Dalam</h2>
-  <p class="section-desc">Harga spesial ini hanya berlaku untuk pembelian hari ini. Jangan sampai menyesal!</p>
-  <div class="countdown">
-    <div class="count-box"><div class="count-num" id="hours">08</div><div class="count-label">Jam</div></div>
-    <div class="count-box"><div class="count-num" id="minutes">45</div><div class="count-label">Menit</div></div>
-    <div class="count-box"><div class="count-num" id="seconds">30</div><div class="count-label">Detik</div></div>
-  </div>
-  <div class="stock-bar-wrap">
-    <div class="stock-label"><span>Stok Tersisa</span><span>Hampir Habis!</span></div>
-    <div class="stock-bar"><div class="stock-fill" id="stockFill"></div></div>
-    <div style="text-align:right;font-size:.78rem;color:rgba(255,255,255,.55);margin-top:.4rem;">Hanya tersisa <strong style="color:var(--gold)">23 pcs</strong> dari 200 pcs</div>
-  </div>
-  <a href="#cta" class="btn-primary" style="margin-top:1rem;display:inline-block">🔥 Klaim Promo Sekarang</a>
-</section>
-
-<!-- ═══ BONUS ═══ -->
-<section id="bonus">
-  <div class="section-tag">Spesial Untuk Kamu</div>
-  <h2 class="section-title">Bonus Eksklusif <em>Gratis</em> untuk Pembelian Hari Ini</h2>
-  <p class="section-desc">Nilai total bonus melebihi harga hijabnya sendiri!</p>
-  <div class="bonus-grid">
-    <div class="bonus-card reveal">
-      <div class="bonus-icon">📦</div>
-      <h3>Pouch Hijab Premium</h3>
-      <p>Tempat penyimpanan hijab anti-debu berbahan kulit sintetik mewah untuk travel.</p>
-      <div class="bonus-value"><s>Rp 75.000</s> GRATIS!</div>
+  <!-- GARANSI -->
+  <section class="garansi" aria-label="Garansi Kepuasan">
+    <div class="container">
+      <div class="garansi-inner">
+        <div class="garansi-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9,12 11,14 15,10"/>
+          </svg>
+        </div>
+        <div class="garansi-content">
+          <h2>Garansi <span>Kepuasan Rasa</span></h2>
+          <p>
+            Kami menjamin setiap porsi yang Anda terima dibuat dengan bahan segar dan penuh kasih sayang.
+            Apabila kualitas tidak sesuai harapan, kami siap mendengar dan memberikan solusi terbaik.
+            Kepercayaan Anda adalah prioritas utama kami.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="bonus-card reveal">
-      <div class="bonus-icon">📌</div>
-      <h3>Set Jarum Pentul Emas</h3>
-      <p>12 pcs jarum pentul anti-karat dengan kepala mutiara yang cantik dan aman.</p>
-      <div class="bonus-value"><s>Rp 35.000</s> GRATIS!</div>
+  </section>
+
+  <!-- NB -->
+  <section class="nb-section" aria-label="Catatan Penting">
+    <div class="container">
+      <div class="nb-box">
+        <h4>Catatan Penting</h4>
+        <ul>
+          <li>Stok nasi kuning terbatas setiap harinya dan tidak ada pembuatan ulang setelah habis.</li>
+          <li>Layanan antar tersedia di sekitar Jl. Sukasari — konfirmasi area dan ongkir via WhatsApp.</li>
+          <li>Tidak ada minimal pemesanan untuk antar; namun mohon pesan sebelum jam 06.00 WIB.</li>
+          <li>Pemesanan tumpeng minimal H-1 (sehari sebelum acara) agar dapat dipersiapkan dengan baik.</li>
+          <li>Jam operasional dapat berubah pada hari libur nasional atau kondisi tertentu.</li>
+          <li>Harga tumpeng menyesuaikan ukuran dan kelengkapan lauk — hubungi kami untuk penawaran.</li>
+          <li>Bawa wadah sendiri untuk diskon Rp 500 per porsi sebagai bentuk kepedulian lingkungan.</li>
+        </ul>
+      </div>
     </div>
-    <div class="bonus-card reveal">
-      <div class="bonus-icon">🎁</div>
-      <h3>Gift Box Cantik</h3>
-      <p>Dikemas dalam kotak hadiah premium—siap dijadikan kado untuk orang tersayang.</p>
-      <div class="bonus-value"><s>Rp 30.000</s> GRATIS!</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer aria-label="Footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">Nasi Kuning <span class="superman-text">Sabil</span></div>
+      <div class="footer-creator">
+        <div class="footer-logo-placeholder">
+          <img src="https://direktori.lldikti4.id/uploads/logo_pt/043118.png">
+        </div>
+        <div class="footer-creator-info">
+          <div class="footer-creator-name">Mochamad Shadam Jaelani</div>
+          <div>STMIK DCI</div>
+          <div>Pengembang Landing Page</div>
+        </div>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 Nasi Kuning Sabil. Semua hak dilindungi.
+      </div>
     </div>
-    <div class="bonus-card reveal">
-      <div class="bonus-icon">💌</div>
-      <h3>E-Book Tutorial Styling</h3>
-      <p>Panduan 30 gaya hijab berbeda untuk berbagai kesempatan—casual, formal, hingga kondangan.</p>
-      <div class="bonus-value"><s>Rp 50.000</s> GRATIS!</div>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ═══ CTA ═══ -->
-<section id="cta">
-  <div class="section-tag">Ambil Penawaranmu</div>
-  <h2 class="section-title" style="color:#fff">Dapatkan <em style="color:var(--gold)">AzMaza Hijab</em><br>Sebelum Kehabisan!</h2>
-  <div class="price-display">
-    <div class="price-old">Rp 299.000</div>
-    <div class="price-new">Rp 149.000</div>
-    <div class="price-period">+ Gratis Ongkir & 4 Bonus Eksklusif</div>
-  </div>
-  <br>
-    <a href="https://wa.me/6285797043563?text=Halo%2C%20saya%20mau%20order%20AzMaza%20Hijab%20promo" class="cta-btn" target="_blank">
-    💬 Order via WhatsApp Sekarang
-    </a>
-  <p class="cta-note">✅ Bayar di tempat (COD) tersedia &nbsp;|&nbsp; 🔒 Transaksi aman &nbsp;|&nbsp; 🚚 Kirim ke seluruh Indonesia</p>
-</section>
-
-<!-- ═══ GARANSI ═══ -->
-<section id="garansi">
-  <div class="section-tag">Tanpa Risiko</div>
-  <h2 class="section-title">Garansi <em>Uang Kembali 100%</em></h2>
-  <div class="guarantee-box reveal">
-    <div class="guarantee-seal">🛡️</div>
-    <h3>30 Hari Money-Back Guarantee</h3>
-    <p>
-      Kami yakin 100% dengan kualitas produk kami. Jika dalam <strong>30 hari</strong> kamu merasa tidak puas dengan alasan apapun—bahan tidak sesuai, warna berbeda, atau apapun—kami akan <strong>mengembalikan uangmu sepenuhnya</strong> tanpa banyak tanya. Risiko sepenuhnya ada di tangan kami, bukan kamu.
-    </p>
-  </div>
-</section>
-
-<!-- ═══ NB ═══ -->
-<section id="nb">
-  <div class="nb-box">
-    <h3>📋 Catatan Penting (NB)</h3>
-    <ul class="nb-list">
-      <li>Promo harga spesial hanya berlaku selama stok masih tersedia dan periode promo belum berakhir.</li>
-      <li>Bonus pouch, jarum pentul, gift box, dan e-book hanya untuk pembelian melalui link WhatsApp resmi kami.</li>
-      <li>Pengiriman dilakukan 1×24 jam setelah konfirmasi pembayaran (hari kerja, Senin–Sabtu).</li>
-      <li>Pastikan konfirmasi alamat lengkap dan nomor HP aktif agar pengiriman berjalan lancar.</li>
-      <li>Untuk klaim garansi, simpan foto produk dan bukti pembelian selama 30 hari pertama.</li>
-      <li>Warna yang tampil di layar mungkin sedikit berbeda karena perbedaan pengaturan monitor—kami berusaha menampilkan seakurat mungkin.</li>
-      <li>Hubungi CS kami di WhatsApp untuk konsultasi pemilihan warna sebelum memesan.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 <span>AzMaza Hijab</span>. Semua hak dilindungi. Produk UMKM Lokal Indonesia 🇮🇩</p>
-</footer>
-
-<script>
-  // ── NAVBAR SCROLL ──
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  // ── REVEAL ON SCROLL ──
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
+  <!-- Floating WA Button -->
+  <a href="https://wa.me/62812-35063078?text=Halo,%20saya%20ingin%20pesan%20Nasi%20Kuning!"
+    target="_blank" rel="noopener"
+    style="position:fixed;bottom:24px;right:24px;z-index:999;width:58px;height:58px;
+            background:#25D366;border-radius:50%;display:flex;align-items:center;
+            justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.5);
+            transition:transform 0.25s,box-shadow 0.25s;"
+    onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 8px 28px rgba(37,211,102,0.65)'"
+    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,0.5)'"
+    aria-label="Chat WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+  
+  <script>
+    function updateTimer() {
+      const now   = new Date();
+      const open  = new Date(now); open.setHours(6, 30, 0, 0);
+      const close = new Date(now); close.setHours(9, 30, 0, 0);
+      let target, msg;
+      if (now < open) {
+        target = open; msg = 'Buka dalam:';
+      } else if (now < close) {
+        target = close; msg = 'Tutup dalam:';
+      } else {
+        const tomorrow = new Date(open);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        target = tomorrow; msg = 'Dibuka lagi besok dalam:';
       }
+      const diff = Math.max(0, target - now);
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('t-hours').textContent   = String(h).padStart(2, '0');
+      document.getElementById('t-minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('t-seconds').textContent = String(s).padStart(2, '0');
+      document.getElementById('timer-msg').textContent = msg;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      const bar = document.getElementById('scroll-progress');
+      if (bar) bar.style.width = pct + '%';
     });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
 
-  // ── COUNTDOWN TIMER ──
-  const endTime = new Date().getTime() + (8 * 3600 + 45 * 60 + 30) * 1000;
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const diff = Math.max(0, endTime - now);
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('hours').textContent = String(h).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(m).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(s).padStart(2, '0');
-  }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+    const heroImg = document.getElementById('hero-plate');
+    const heroPlaceholder = document.getElementById('hero-placeholder');
+    if (heroImg && heroImg.src && !heroImg.src.endsWith('/')) {
+      heroImg.onload = () => {
+        heroImg.style.display = 'block';
+        if (heroPlaceholder) heroPlaceholder.style.display = 'none';
+      };
+    }
 
-  // ── STOCK BAR ──
-  setTimeout(() => {
-    document.getElementById('stockFill').style.width = '88%';
-  }, 600);
+    window.addEventListener('load', () => {
+      const fill = document.querySelector('.stock-bar-fill');
+      if (fill) { fill.style.width = '0%'; setTimeout(() => { fill.style.width = '72%'; }, 400); }
+    });
 
-  // ── TESTIMONIAL SLIDER ──
-  const track = document.getElementById('track');
-  const cards = track.querySelectorAll('.testi-card');
-  let current = 0;
-  function getVisible() { return window.innerWidth < 768 ? 1 : window.innerWidth < 1100 ? 2 : 3; }
-  function getCardWidth() {
-    const card = cards[0];
-    return card.offsetWidth + parseInt(getComputedStyle(track).gap);
-  }
-  function slide() {
-    track.style.transform = `translateX(-${current * getCardWidth()}px)`;
-  }
-  document.getElementById('next').addEventListener('click', () => {
-    const max = cards.length - getVisible();
-    current = current < max ? current + 1 : 0;
-    slide();
-  });
-  document.getElementById('prev').addEventListener('click', () => {
-    const max = cards.length - getVisible();
-    current = current > 0 ? current - 1 : max;
-    slide();
-  });
-  // Auto slide
-  setInterval(() => {
-    const max = cards.length - getVisible();
-    current = current < max ? current + 1 : 0;
-    slide();
-  }, 4000);
-</script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.benefit-card, .menu-card-single, .layanan-card, .testi-card').forEach(el => {
+      el.style.opacity  = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+
 </body>
 </html>
